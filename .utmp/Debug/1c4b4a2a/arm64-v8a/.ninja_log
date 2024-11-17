@@ -1,0 +1,12 @@
+# ninja log v5
+174	2334	7500049186654535	FramePacing/CMakeFiles/swappywrapper.dir/UnitySwappyWrapper.cpp.o	a97997d0106c3960
+1	2391	7500049195182412	GameActivity/CMakeFiles/game.dir/UGAConfiguration.cpp.o	1b349b36ad4c7967
+117	2416	7500049196736649	GameActivity/CMakeFiles/game.dir/UGAInputMotionEvent.cpp.o	4c356106053282e4
+33	2425	7500049195953236	GameActivity/CMakeFiles/game.dir/UGAInputKeyEvent.cpp.o	2a3b1b11bff98732
+146	2430	7500049197705050	GameActivity/CMakeFiles/game.dir/UGASoftKeyboard.cpp.o	a9ce85f8d64f1f03
+13	2440	7500049198525201	GameActivity/CMakeFiles/game.dir/UGADebug.cpp.o	c24cb29ba8284c93
+56	2451	7500049197866071	GameActivity/CMakeFiles/game.dir/UGAEntry.cpp.o	9a9a5f46b94cdbab
+87	2576	7500049199490339	GameActivity/CMakeFiles/game.dir/UGAInput.cpp.o	bf0bbe45527572ac
+24	2634	7500049200434645	GameActivity/CMakeFiles/game.dir/UGAApplication.cpp.o	bc3d22cdc124a6ea
+2336	2768	7500049201808478	D:/Unity projects/Battle-of-the-Fates/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1c4b4a2a/obj/arm64-v8a/libswappywrapper.so	f29d0d97f938cf38
+2638	2898	7500049203050988	D:/Unity projects/Battle-of-the-Fates/Library/Bee/Android/Prj/IL2CPP/Gradle/unityLibrary/build/intermediates/cxx/Debug/1c4b4a2a/obj/arm64-v8a/libgame.so	7b97a80e337e65d8

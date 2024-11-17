@@ -1,0 +1,18 @@
+# Ignore Library folder (contains cache and imported assets)
+[Ll]ibrary/
+
+# Ignore Temp folder (temporary files during the build process)
+[Tt]emp/
+
+# Ignore Obj folder (compilation output for scripts)
+[Oo]bj/
+
+# Ignore Build folder (generated builds)
+[Bb]uild/
+[Bb]uilds/
+
+# Ignore Logs folder (log files)
+[Ll]ogs/
+
+# Ignore MemoryCaptures (contains memory snapshots)
+[Mm]emoryCaptures/
