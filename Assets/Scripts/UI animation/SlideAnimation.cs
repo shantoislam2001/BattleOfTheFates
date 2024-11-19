@@ -1,26 +1,60 @@
 using UnityEngine;
 
-public class UISlideAnimation : MonoBehaviour
+public class SlideAnimation
 {
-    [SerializeField] private RectTransform panel; // Assign your UI panel here.
-    [SerializeField] private float slideDuration = 0.5f; // Duration of the animation.
-    [SerializeField] private Vector2 idlePosition = Vector2.zero; // On-screen position.
-    [SerializeField] private Vector2 offScreenPosition = new Vector2(1920, 0); // Off-screen position.
-    [SerializeField] private GameObject openingButton;
-    [SerializeField] private GameObject closingButton;
-
-
-    private void Start()
+    public enum SlideDirection
     {
+        LeftToRight,
+        RightToLeft,
+        UpToDown,
+        DownToUp
+    }
+
+    private RectTransform panel; // Reference to the UI panel's RectTransform.
+    private float slideDuration; // Duration of the animation.
+    private Vector2 idlePosition; // On-screen position.
+    private Vector2 offScreenPosition; // Off-screen position.
+
+    // Constructor to initialize the animation properties.
+    public SlideAnimation(RectTransform panel, float duration, SlideDirection direction, Canvas canvas, Vector2 idlePosition)
+    {
+        this.panel = panel;
+        this.slideDuration = duration;
+        this.idlePosition = idlePosition;
+
+        // Get the canvas size to calculate positions.
+        RectTransform canvasRect = canvas.GetComponent<RectTransform>();
+        Vector2 canvasSize = canvasRect.sizeDelta;
+
+        // Calculate positions based on the direction.
+        idlePosition = Vector2.zero; // Center of the canvas (default on-screen position).
+        switch (direction)
+        {
+            case SlideDirection.LeftToRight:
+                offScreenPosition = new Vector2(-canvasSize.x, 0);
+                break;
+            case SlideDirection.RightToLeft:
+                offScreenPosition = new Vector2(canvasSize.x, 0);
+                break;
+            case SlideDirection.UpToDown:
+                offScreenPosition = new Vector2(0, canvasSize.y);
+                break;
+            case SlideDirection.DownToUp:
+                offScreenPosition = new Vector2(0, -canvasSize.y);
+                break;
+            default:
+                offScreenPosition = new Vector2(canvasSize.x, 0); // Default to RightToLeft.
+                break;
+        }
+
         // Ensure the panel starts in an inactive state and off-screen.
         panel.gameObject.SetActive(false);
         panel.anchoredPosition = offScreenPosition;
     }
 
+    // Method to open the panel.
     public void OpenPanel()
     {
-        openingButton.SetActive(false);
-        closingButton.SetActive(true);
         // Activate the panel before starting the animation.
         panel.gameObject.SetActive(true);
 
@@ -29,10 +63,9 @@ public class UISlideAnimation : MonoBehaviour
                  .setEase(LeanTweenType.easeOutExpo);
     }
 
+    // Method to close the panel.
     public void ClosePanel()
     {
-        openingButton.SetActive(true);
-        closingButton.SetActive(false);
         // Animate the panel to the off-screen position.
         LeanTween.move(panel, offScreenPosition, slideDuration)
                  .setEase(LeanTweenType.easeInExpo)
