@@ -5,14 +5,17 @@ using UnityEngine.AI;
 [RequireComponent(typeof(Animator))]
 public class AICharacter : MonoBehaviour
 {
-    public Transform target;           // Target to follow
-    public float walkSpeed = 2f;       // Speed threshold for walking
-    public float runSpeed = 4f;        // Speed threshold for running
+    public Vector3 target;             // Target position to follow
+    public float walkSpeed = 2f;       // Speed for walking
+    public float runSpeed = 4f;        // Speed for running
     public float roamRadius = 10f;     // Radius for random roaming
     public float roamInterval = 5f;    // Time interval between random movements
+
     private NavMeshAgent agent;        // NavMeshAgent component
     private Animator animator;         // Animator component
     private float roamTimer;           // Timer for random roaming
+    private bool hasTarget = false;    // Flag to determine if a target is set
+    private bool isRunning = false;    // Determines if AI should run
 
     void Start()
     {
@@ -20,7 +23,7 @@ public class AICharacter : MonoBehaviour
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
 
-        // Set the NavMeshAgent speeds (walk/run)
+        // Set the initial speed
         agent.speed = walkSpeed;
 
         // Initialize the roam timer
@@ -30,7 +33,7 @@ public class AICharacter : MonoBehaviour
     void Update()
     {
         // Handle movement towards the target or roaming randomly
-        if (target != null)
+        if (hasTarget)
         {
             MoveTowardsTarget();
         }
@@ -59,9 +62,9 @@ public class AICharacter : MonoBehaviour
 
     void MoveTowardsTarget()
     {
-        agent.SetDestination(target.position);
+        agent.SetDestination(target);
 
-        if (agent.remainingDistance < 2f)
+        if (agent.remainingDistance < 0.5f)
         {
             agent.isStopped = true;
             animator.SetBool("IsMoving", false);
@@ -78,13 +81,19 @@ public class AICharacter : MonoBehaviour
 
         if (roamTimer <= 0f)
         {
+            // Choose a random direction and position within the roam radius
             Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
             randomDirection += transform.position;
 
             NavMeshHit navHit;
             if (NavMesh.SamplePosition(randomDirection, out navHit, roamRadius, NavMesh.AllAreas))
             {
+                // Set the destination for roaming
                 agent.SetDestination(navHit.position);
+
+                // Randomize between walking and running
+                isRunning = Random.value > 0.5f;
+                agent.speed = isRunning ? runSpeed : walkSpeed;
             }
 
             roamTimer = roamInterval;
@@ -96,21 +105,43 @@ public class AICharacter : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Character"))
         {
-            // Stop the character and choose a new direction to avoid collision
             agent.isStopped = true;
             roamTimer = 0f; // Trigger immediate random roam
         }
     }
 
-    // Call this method to update the target for the AI character
-    public void SetTarget(Transform newTarget)
+    // Public method to set the target as a Vector3 position
+    public void SetTarget(Vector3 newTarget)
     {
         target = newTarget;
-
-        // Resume moving if a new target is assigned
-        if (target != null)
-        {
-            agent.isStopped = false;
-        }
+        hasTarget = true;
+        agent.isStopped = false;
     }
+
+    // Public method to clear the target and allow roaming
+    public void ClearTarget()
+    {
+        hasTarget = false;
+    }
+
+    // Public method to switch to running
+    public void StartRunning()
+    {
+        isRunning = true;
+        agent.speed = runSpeed;
+    }
+
+    // Public method to switch to walking
+    public void StopRunning()
+    {
+        isRunning = false;
+        agent.speed = walkSpeed;
+    }
+
+    // Public method to check the AI GameObject name
+    public string GetCharacterName()
+    {
+        return gameObject.name;
+    }
+
 }

@@ -22749,7 +22749,7 @@ PrefabInstance:
     - target: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
         type: 3}
       propertyPath: m_Name
-      value: SK_Military_Survivalist (3)
+      value: AI
       objectReference: {fileID: 0}
     - target: {fileID: 6733609850376833494, guid: 863c031a8670d3e4d8708b005a77bc33,
         type: 3}
@@ -22854,7 +22854,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20736d79f28852e45aeab6e514cd153c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 0}
+  target: {x: 0, y: 0, z: 0}
   walkSpeed: 2
   runSpeed: 4
   roamRadius: 50
@@ -23714,6 +23714,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: untitled
+      objectReference: {fileID: 0}
+    - target: {fileID: 919132149155446097, guid: 473babfaaf53d7c4ba315d5679016456,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 919132149155446097, guid: 473babfaaf53d7c4ba315d5679016456,
         type: 3}
@@ -31703,7 +31708,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 20736d79f28852e45aeab6e514cd153c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  target: {fileID: 2090412761}
+  target: {x: 0, y: 0, z: 0}
   walkSpeed: 2
   runSpeed: 4
   roamRadius: 10
