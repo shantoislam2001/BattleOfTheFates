@@ -1,0 +1,85 @@
+using UnityEngine;
+
+public class ChasingBackend : MonoBehaviour
+{
+    public AIManager ai;
+    // Start is called once before the first execution of Update after the MonoBehaviour is created
+    void Start()
+    {
+        
+        setSlotForAI("AI", "A1");
+    }
+
+    public void setSlotForAI(string name, string slot)
+    {
+        Vector3 target = Slot.slotPosition[slot];
+        ai.SetTargetForAI(name, target);
+      
+    }
+
+    public string getWiner(string p1, string p2)
+    {
+        if (p1 == p2)
+        {
+            Debug.Log("It's a tie!");
+            return "Equal";
+        }
+
+        
+        if (p1 == "Fate" || p2 == "Fate")
+        {
+
+            return "Fate";
+        }
+
+        
+        if (p1 == "Rebel" && p2 == "King")
+        {
+
+            return "Rebel";
+        }
+        if (p2 == "Rebel" && p1 == "King")
+        {
+
+            return "Rebel";
+        }
+
+        
+        if (p1 == "king" && (p2 =="Prince" || p2 == "Stepmother" || p2 == "Witch"))
+        {
+
+            return "King";
+        }
+        if (p2 == "King" && (p1 == "Prince" || p1 == "Stepmother" || p1 == "Witch"))
+        {
+
+            return "king";
+        }
+
+        
+        if ((p1 == "Prince" && p2 == "Witch") ||
+            (p1 == "Stepmother" && p2 == "Prince") ||
+            (p1 == "Witch" && p2 == "Stepmother"))
+        {
+          
+            return p2;
+        }
+        if ((p2 == "Prince" && p1 == "Witch") ||
+            (p2 == "Stepmother" && p1 == "Prince") ||
+            (p2 == "Witch" && p1 == "Stepmother"))
+        {
+           
+            return p1;
+        }
+
+
+        return p1;
+    }
+   
+
+    // Update is called once per frame
+    void Update()
+    {
+        
+    }
+}

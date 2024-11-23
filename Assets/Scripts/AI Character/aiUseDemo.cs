@@ -12,4 +12,7 @@ public class AIControlExample : MonoBehaviour
         // Make "AICharacter2" run
         aiManager.MakeAIRun("AICharacter2");
     }
+
+  
+
 }
