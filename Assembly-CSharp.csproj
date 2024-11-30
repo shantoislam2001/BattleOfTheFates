@@ -165,6 +165,7 @@
     <Compile Include="Assets\Scripts\PlayerController\PlayerController.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingIssue.cs" />
     <Compile Include="Assets\Joystick Pack\Examples\JoystickPlayerExample.cs" />
+    <Compile Include="Assets\Scripts\Others\SlotTriggerForAI.cs" />
     <Compile Include="Assets\LeanTween\Testing\TestingOptionalCancel.cs" />
     <Compile Include="Assets\Scripts\UI\TerainDuplicate.cs" />
     <Compile Include="Assets\Forst\CTI Runtime Components\CTI Runtime Components BIRP\Scripts\CTI_CustomWind.cs" />

@@ -2,6 +2,7 @@ using UnityEngine;
 
 public class AreaTrigger : MonoBehaviour
 {
+    public string Slot;
     [Header("Gizmo Settings")]
     public Color gizmoColor = Color.green; // Color of the gizmo
     public Vector3 triggerSize = new Vector3(1, 1, 1); // Size of the trigger area

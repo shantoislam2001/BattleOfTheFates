@@ -12,7 +12,7 @@ public class ChasingBackend : MonoBehaviour
 
     public void setSlotForAI(string name, string slot)
     {
-        Vector3 target = Slot.slotPosition[slot];
+        Vector3 target = new Vector3(414.9537f, -0.0151712f, 323.8016f);
         ai.SetTargetForAI(name, target);
       
     }

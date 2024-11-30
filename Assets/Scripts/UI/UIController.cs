@@ -16,14 +16,22 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform enterButton;
     [SerializeField] private Vector2 enterButtonIdlePosition = Vector2.zero;
 
+    [Header("Card trow panel")]
+    [SerializeField] private RectTransform cardThrowPanel;
+    [SerializeField] private Vector2 cardThrowPanelPosition = Vector2.zero;
+
+
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
+    private SlideAnimation cardThrowAnimation;
+   
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         cardsPanelAnimation= new SlideAnimation(cardsPanel, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, idlePosition);
         enterButtonAnimation= new SlideAnimation(enterButton, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, enterButtonIdlePosition);
+        cardThrowAnimation = new SlideAnimation(cardThrowPanel, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, cardThrowPanelPosition);
     }
 
     // Cards 
@@ -53,6 +61,18 @@ public class UIController : MonoBehaviour
     {
         enterButtonAnimation.ClosePanel();
     }
+
+
+    public void cardThowPanelOpen()
+    {
+        cardThrowAnimation.OpenPanel();
+    }
+
+    public void cardThrowPanelClose()
+    {
+        cardThrowAnimation.ClosePanel();
+    }
+
 
 
     // Update is called once per frame
