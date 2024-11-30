@@ -18,7 +18,7 @@ public class SlotTriggerForAI : MonoBehaviour
     public UnityEngine.Events.UnityEvent onTriggerEnter; // Event when an object enters
     public UnityEngine.Events.UnityEvent onTriggerStay;  // Event when an object stays
     public UnityEngine.Events.UnityEvent onTriggerExit;  // Event when an object exits
-    
+    public SlotA slotA;
 
     private void Reset()
     {
@@ -47,7 +47,8 @@ public class SlotTriggerForAI : MonoBehaviour
                 string slot = Slot.emptySlots.Dequeue();
                 ai.SetTargetForAI(n, Slot.slotPosition[slot]);
                 updateSlotPayority(slot);
-                Slot.slotCurrentPlayer.Add(slot, n);
+                playerSetInSlot(slot, n);
+               
 
             }else
             {
@@ -114,5 +115,20 @@ public class SlotTriggerForAI : MonoBehaviour
             Slot.emptySlots.UpdatePriority("D2", 2);
         }
     }
+
+    public void playerSetInSlot(string slot, string player)
+    {
+        if (slot == "A1")
+        {
+            SlotA.p1Name = player;
+        }
+        else if (slot == "A2")
+        {
+            SlotA.p2Name = player;
+            slotA.startGame();
+        }
+    }
+
+  
 
 }

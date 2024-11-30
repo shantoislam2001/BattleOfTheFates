@@ -3,7 +3,7 @@ using UnityEngine;
 public class UIController : MonoBehaviour
 {
     [Header("Card panel")]
-   
+    public static UIController Self { get; private set; }
     [SerializeField] private RectTransform cardsPanel; // Assign panel 2's RectTransform.
     [SerializeField] private float animationDuration = 0.5f; // Shared animation duration.
     [SerializeField] private Canvas canvas; // Assign your Canvas here.
@@ -24,7 +24,20 @@ public class UIController : MonoBehaviour
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
-   
+
+
+    private void Awake()
+    {
+        // Ensure there's only one instance
+        if (Self == null)
+        {
+            Self = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()

@@ -103,7 +103,7 @@ public class AICharacter : MonoBehaviour
     // Prevent collisions with obstacles
     void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Obstacle") || collision.gameObject.CompareTag("Character"))
+        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI"))
         {
             agent.isStopped = true;
             roamTimer = 0f; // Trigger immediate random roam

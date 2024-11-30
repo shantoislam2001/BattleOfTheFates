@@ -12,6 +12,8 @@ public class Cards : MonoBehaviour
     public int rebel;
     public int fate;
     public List<string> card = new List<string>();
+    public string throwedCard;
+    public string currentSlot;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
@@ -24,6 +26,11 @@ public class Cards : MonoBehaviour
           rebel = 2;
           fate = 2;
         
+    }
+
+    public void aiCardThrowing()
+    {
+        throwedCard = throwCard();
     }
 
     public string throwCard()
@@ -66,6 +73,19 @@ public class Cards : MonoBehaviour
         int r = Random.Range(0, card.Count);
         return card[r];
     }
+
+    // card throwing system for player 
+    public void princeCard()
+    {
+        if(prince > 0)
+        {
+            prince--;
+            GameObject.Find("Tables").transform.Find("Slot "+currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);    
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
+
+
 
 
     // Update is called once per frame

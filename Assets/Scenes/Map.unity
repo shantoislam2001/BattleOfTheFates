@@ -3834,7 +3834,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: C1
+  slot: C1
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -4901,7 +4901,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: A2
+  slot: A2
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -8482,7 +8482,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: B2
+  slot: B2
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -8978,7 +8978,7 @@ MonoBehaviour:
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
-  enableDebugMessages: 1
+  enableDebugMessages: 0
   ai: {fileID: 1766350684}
   onTriggerEnter:
     m_PersistentCalls:
@@ -8989,6 +8989,7 @@ MonoBehaviour:
   onTriggerExit:
     m_PersistentCalls:
       m_Calls: []
+  slotA: {fileID: 1717488915}
 --- !u!65 &823827868
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -23526,7 +23527,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: A1
+  slot: A1
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -26194,7 +26195,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: C2
+  slot: C2
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -26453,7 +26454,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: D2
+  slot: D2
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -29340,7 +29341,7 @@ CharacterController:
   m_Enabled: 1
   serializedVersion: 3
   m_Height: 2
-  m_Radius: 0.5
+  m_Radius: 0.2
   m_SlopeLimit: 45
   m_StepOffset: 0.3
   m_SkinWidth: 0.08
@@ -29534,6 +29535,14 @@ PrefabInstance:
         type: 3}
       insertIndex: -1
       addedObject: {fileID: 1423883809}
+    - targetCorrespondingSourceObject: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423883812}
+    - targetCorrespondingSourceObject: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
+        type: 3}
+      insertIndex: -1
+      addedObject: {fileID: 1423883813}
   m_SourcePrefab: {fileID: 100100000, guid: 863c031a8670d3e4d8708b005a77bc33, type: 3}
 --- !u!1 &1423883806 stripped
 GameObject:
@@ -29599,6 +29608,58 @@ MonoBehaviour:
   rebel: 2
   fate: 2
   card: []
+  throwedCard: 
+  currentSlot: 
+--- !u!54 &1423883812
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423883806}
+  serializedVersion: 4
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_CenterOfMass: {x: 0, y: 0, z: 0}
+  m_InertiaTensor: {x: 1, y: 1, z: 1}
+  m_InertiaRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ImplicitCom: 1
+  m_ImplicitTensor: 1
+  m_UseGravity: 1
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
+--- !u!136 &1423883813
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1423883806}
+  m_Material: {fileID: 0}
+  m_IncludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_ExcludeLayers:
+    serializedVersion: 2
+    m_Bits: 0
+  m_LayerOverridePriority: 0
+  m_IsTrigger: 0
+  m_ProvidesContacts: 0
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.2
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 1, z: 0}
 --- !u!1 &1430854657
 GameObject:
   m_ObjectHideFlags: 0
@@ -37180,6 +37241,52 @@ Transform:
     type: 3}
   m_PrefabInstance: {fileID: 1395297065}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1717488914
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1717488916}
+  - component: {fileID: 1717488915}
+  m_Layer: 0
+  m_Name: All slot
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1717488915
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717488914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 04fb2cb82ffcbc84f99e8093f415610e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  A1cards: {fileID: 1906643591}
+  A2cards: {fileID: 1844732144}
+--- !u!4 &1717488916
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1717488914}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1766350686}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &1722667153 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
@@ -37501,7 +37608,8 @@ Transform:
   m_LocalPosition: {x: 386.7293, y: 1.0300267, z: 316.21045}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
-  m_Children: []
+  m_Children:
+  - {fileID: 1717488916}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1766350687
@@ -37986,7 +38094,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: B1
+  slot: B1
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1
@@ -38410,7 +38518,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 13f964d13bbee624baa98df11cba80ba, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Slot: D1
+  slot: D1
   gizmoColor: {r: 0, g: 1, b: 0, a: 1}
   triggerSize: {x: 1, y: 1, z: 1}
   isTrigger: 1

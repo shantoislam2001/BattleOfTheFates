@@ -17,7 +17,7 @@ public class ChasingBackend : MonoBehaviour
       
     }
 
-    public string getWiner(string p1, string p2)
+    public static string getWiner(string p1, string p2)
     {
         if (p1 == p2)
         {
