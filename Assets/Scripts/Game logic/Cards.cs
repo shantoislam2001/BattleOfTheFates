@@ -79,7 +79,10 @@ public class Cards : MonoBehaviour
     {
         if(prince > 0)
         {
+            string currentSlot = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>().currentSlot;
+            Debug.Log("cs "+currentSlot);
             prince--;
+            throwedCard = "Prince";
             GameObject.Find("Tables").transform.Find("Slot "+currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);    
             UIController.Self.cardThrowPanelClose();
         }

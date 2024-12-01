@@ -27,6 +27,7 @@ public class SlotA : MonoBehaviour
             GameObject.Find(p1Name).GetComponent<Cards>().aiCardThrowing();
             p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
             Invoke("A1cardHideInTable", 5f);
+            Debug.Log("player 1 card "+p1card);
         }
 
         if (p2isAI)
@@ -36,7 +37,7 @@ public class SlotA : MonoBehaviour
             Invoke("A2cardHideInTable", 5f);
         }
 
-
+        Invoke("winer",10f);
 
     }
 
@@ -52,9 +53,9 @@ public class SlotA : MonoBehaviour
             p2card = GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
         }
         A1cards.transform.Find("Hide").gameObject.SetActive(false);
-        A1cards.transform.Find(p1card).gameObject.SetActive(true);
+        A1cards.transform.Find(p1card+" card").gameObject.SetActive(true);
         A2cards.transform.Find("Hide").gameObject.SetActive(false);
-        A2cards.transform.Find(p2card).gameObject.SetActive(true);
+        A2cards.transform.Find(p2card+" card").gameObject.SetActive(true);
         winerCard = ChasingBackend.getWiner(p1card, p2card);
         Debug.Log(winerCard);
     }

@@ -48,4 +48,19 @@ public class PriorityQueue<T>
 
         throw new System.ArgumentException("Item not found in the priority queue.");
     }
+
+    // Delete a specific item from the queue
+    public void Delete(T item)
+    {
+        for (int i = 0; i < elements.Count; i++)
+        {
+            if (EqualityComparer<T>.Default.Equals(elements[i].Key, item))
+            {
+                elements.RemoveAt(i);
+                return;
+            }
+        }
+
+        throw new System.ArgumentException("Item not found in the priority queue.");
+    }
 }

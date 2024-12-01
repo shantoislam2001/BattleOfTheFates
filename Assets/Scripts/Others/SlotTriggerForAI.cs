@@ -54,12 +54,26 @@ public class SlotTriggerForAI : MonoBehaviour
             {
                 ai.SetTargetForAI(n, new Vector3(Random.Range(420f,425f), -0.02000013f, Random.Range(320f, 325f)));
                 Slot.waitingAI.Enqueue(n);
+
             }
            
         }
 
 
     }
+    // Slot setup for player
+    public void enterForPlayer()
+    {
+        string currentSlot = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>().currentSlot;
+        string playerName = GameObject.FindGameObjectWithTag("Player").gameObject.name;
+        updateSlotPayority(currentSlot);
+        playerSetInSlot(currentSlot, playerName);
+        Slot.emptySlots.Delete(currentSlot);
+        UIController.Self.enterButtonInactive();
+        UIController.Self.cardThowPanelOpen();
+
+    }
+
 
     private void OnTriggerStay(Collider other)
     {

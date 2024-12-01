@@ -20,7 +20,7 @@ public class AreaTrigger : MonoBehaviour
     public UnityEngine.Events.UnityEvent onTriggerStay;  // Event when an object stays
     public UnityEngine.Events.UnityEvent onTriggerExit;  // Event when an object exits
     public string tag;
-    public SlotA slotA;
+    
 
     private void Reset()
     {
@@ -43,9 +43,21 @@ public class AreaTrigger : MonoBehaviour
         if(other.CompareTag(tag))
         {
             onTriggerEnter.Invoke();
+            GameObject.FindGameObjectWithTag(tag).GetComponent<Cards>().currentSlot = 
+                gameObject.GetComponent<AreaTrigger>().slot;
+        }
+        else if (other.CompareTag("AI"))
+        {
+            
+            string aiName = other.gameObject.name;
+            GameObject character = GameObject.Find(aiName);
+            string currentSlot = gameObject.GetComponent<AreaTrigger>().slot;
+            Debug.Log("slot naem " + currentSlot);
+            
+            StartCoroutine(RotateAfterDelay(character, Slot.slotRotation[currentSlot].y, 2f));
         }
 
-        
+
     }
 
     private void OnTriggerStay(Collider other)
@@ -72,11 +84,13 @@ public class AreaTrigger : MonoBehaviour
         }
         else if (other.CompareTag("AI"))
         {
+            Debug.Log("called after delay1");
             string aiName = other.gameObject.name;
             GameObject character = GameObject.Find(aiName);
             string currentSlot = gameObject.GetComponent<AreaTrigger>().slot;
             Debug.Log("slot naem " + currentSlot);
-            StartCoroutine(RotateAfterDelay(character, Slot.slotRotation[currentSlot].y ,1f));
+            Debug.Log("called after delay2");
+            StartCoroutine(RotateAfterDelay(character, Slot.slotRotation[currentSlot].y ,2f));
         }
 
 
@@ -89,6 +103,7 @@ public class AreaTrigger : MonoBehaviour
 
         // Execute the rotation
         character.transform.eulerAngles = new Vector3(0f, v, 0f);
+        
     }
 
     private void OnDrawGizmos()
@@ -99,46 +114,9 @@ public class AreaTrigger : MonoBehaviour
         Gizmos.DrawCube(transform.position, triggerSize); // Draw the semi-transparent filled gizmo
     }
 
-    public void enterForPlayer()
-    {
-        string currentSlot = gameObject.GetComponent<AreaTrigger>().slot;
-        string playerName = GameObject.FindGameObjectWithTag("Player").name;
-        updateSlotPayority(currentSlot);
-        
-    }
+  
 
 
-    public void updateSlotPayority(string slot)
-    {
-        if (slot == "A1")
-        {
-            Slot.emptySlots.UpdatePriority("A2", 2);
-        }
-        else if (slot == "B1")
-        {
-            Slot.emptySlots.UpdatePriority("B2", 2);
-        }
-        else if (slot == "C1")
-        {
-            Slot.emptySlots.UpdatePriority("C2", 2);
-        }
-        else if (slot == "D1")
-        {
-            Slot.emptySlots.UpdatePriority("D2", 2);
-        }
-    }
-
-    public void playerSetInSlot(string slot, string player)
-    {
-        if (slot == "A1")
-        {
-            SlotA.p1Name = player;
-        }
-        else if (slot == "A2")
-        {
-            SlotA.p2Name = player;
-            slotA.startGame();
-        }
-    }
+  
 
 }
