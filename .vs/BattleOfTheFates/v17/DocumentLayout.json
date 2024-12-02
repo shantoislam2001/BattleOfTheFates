@@ -3,12 +3,12 @@
   "WorkspaceRootPath": "D:\\Unity projects\\BattleOfTheFates\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|d:\\unity projects\\battleofthefates\\assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\others\\slottriggerforai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\slottriggerforai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|d:\\unity projects\\battleofthefates\\assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\slot controle\\slota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -78,7 +78,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 11,
+          "SelectedChildIndex": 3,
           "Children": [
             {
               "$type": "Bookmark",
@@ -102,15 +102,16 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SlotTriggerForAI.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "RelativeToolTip": "Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
-              "ViewState": "AQIAADkAAAAAAAAAAAAYwEYAAAAsAAAA",
+              "ViewState": "AQIAAEYAAAAAAAAAAAAswFMAAAAAAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:32:43.821Z"
+              "WhenOpened": "2024-11-29T14:32:43.821Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
@@ -197,13 +198,13 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 1,
               "Title": "AreaTrigger.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\AreaTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\AreaTrigger.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\AreaTrigger.cs",
               "RelativeToolTip": "Assets\\Scripts\\Others\\AreaTrigger.cs",
-              "ViewState": "AQIAAFcAAAAAAAAAAAAuwGkAAAAIAAAA",
+              "ViewState": "AQIAAJEAAAAAAAAAAAAwwJ8AAAAFAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T17:18:12.924Z",
               "EditorCaption": ""

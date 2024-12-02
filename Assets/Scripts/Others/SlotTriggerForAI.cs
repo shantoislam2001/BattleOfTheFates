@@ -20,6 +20,15 @@ public class SlotTriggerForAI : MonoBehaviour
     public UnityEngine.Events.UnityEvent onTriggerExit;  // Event when an object exits
     public SlotA slotA;
 
+    public GameObject a1;
+    public GameObject a2;
+    public GameObject b1;
+    public GameObject b2;
+    public GameObject c1;
+    public GameObject c2;
+    public GameObject d1;
+    public GameObject d2;
+
     private void Reset()
     {
         // Automatically adjust collider settings on adding the script
@@ -71,6 +80,7 @@ public class SlotTriggerForAI : MonoBehaviour
         Slot.emptySlots.Delete(currentSlot);
         UIController.Self.enterButtonInactive();
         UIController.Self.cardThowPanelOpen();
+        slotControlForPlayer(currentSlot);
 
     }
 
@@ -143,6 +153,50 @@ public class SlotTriggerForAI : MonoBehaviour
         }
     }
 
-  
+
+    void slotControlForPlayer(string slot)
+    {
+        if (slot == "A1")
+        {
+            a1.SetActive(false);
+            a2.SetActive(true);
+        }
+        else if (slot == "A2")
+        {
+            a2.SetActive(false);
+        }
+        else if (slot == "B1")
+        {
+            b1.SetActive(false);
+            b2.SetActive(true);
+        }
+        else if (slot == "B2")
+        {
+
+            b2.SetActive(false);
+        }
+        else if (slot == "C1")
+        {
+            c1.SetActive(false);
+            c2.SetActive(true);
+        }
+        else if (slot == "C2")
+        {
+
+            c2.SetActive(false);
+        }
+        else if (slot == "D1")
+        {
+            d1.SetActive(false);
+            d2.SetActive(true);
+        }
+        else if (slot == "D2")
+        {
+
+            d2.SetActive(false);
+        }
+    }
+
+
 
 }
