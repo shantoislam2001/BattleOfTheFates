@@ -90,6 +90,7 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSplinePerformance.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\GeneralEasingTypes.cs" />
     <Compile Include="Assets\LeanTween\Testing\FollowingTests.cs" />
+    <Compile Include="Assets\_Heathen Engineering\Samples\UX Examples\Flat Icons [Free]\ToggleSetAnimatorBoolean.cs" />
     <Compile Include="Assets\Scripts\AI Character\aiUseDemo.cs" />
     <Compile Include="Assets\Photon\PhotonRealtime\Demos\DemoLoadBalancing\ConnectAndJoinRandomLb.cs" />
     <Compile Include="Assets\LeanTween\Examples\Scripts\TestingUnitTests.cs" />
@@ -260,6 +261,7 @@
     <None Include="Assets\Photon\PhotonLibs\Photon3Unity3D.dll" />
     <None Include="Assets\TextMesh Pro\Resources\LineBreaking Following Characters.txt" />
     <None Include="Assets\Photon\PhotonLibs\Metro\Photon3Unity3D.dll" />
+    <None Include="Assets\_Heathen Engineering\Documentation\UX\Flat Icons [Free]\Read Me.txt" />
     <None Include="Assets\EasyRoads3D\Resources\dynamic prefabs\dynamic prefabs.txt" />
     <None Include="Assets\TextMesh Pro\Shaders\TMP_SDF-Mobile Masking.shader" />
     <None Include="Assets\Forst\CTI Runtime Components\CTI Runtime Components BIRP\Shaders\Includes\CTI_Builtin4xTreeLibraryTumbling_301.cginc" />
