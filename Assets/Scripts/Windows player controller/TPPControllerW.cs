@@ -3,6 +3,7 @@ using UnityEngine.InputSystem;
 
 public class TPPControllerW : MonoBehaviour
 {
+    
     [Header("Movement Settings")]
     public float walkSpeed = 2.0f;
     public float runSpeed = 5.0f;
@@ -13,9 +14,9 @@ public class TPPControllerW : MonoBehaviour
     [Header("Camera Settings")]
     public Transform cameraRig; // Reference to the CameraRig object
     public Transform mainCameraTransform; // Reference to the actual Camera (Main Camera)
-    public float lookSensitivity = 1.0f;
+    public float lookSensitivity = 0.2f;
     public float cameraSmoothTime = 0.1f;
-    public Vector3 cameraOffset = new Vector3(0, 2, -4);
+    public Vector3 cameraOffset = new Vector3(0, 1.85f, -2);
 
     private CharacterController controller;
     private Vector2 movementInput;
@@ -31,6 +32,8 @@ public class TPPControllerW : MonoBehaviour
     {
         controller = GetComponent<CharacterController>();
         animator = GetComponent<Animator>();
+        cameraRig = GameObject.Find("Camera parent").transform;
+        mainCameraTransform = cameraRig.Find("Main Camera").transform;
     }
 
     void Update()

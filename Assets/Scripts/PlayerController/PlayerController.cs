@@ -9,9 +9,9 @@ public class PlayerController : MonoBehaviour
     public Transform cameraTransform;  // Assign your camera here
     public Animator animator;  // Animator for handling animations
 
-    public float moveSpeed = 5f;
-    public float runSpeed = 8f;  // Speed while running
-    public float turnSpeed = 100f;  // Controls player rotation speed
+    public float walkSpeed = 2f;  // Speed for walking
+    public float runSpeed = 5f;  // Speed for running
+    public float turnSpeed = 10f;  // Controls player rotation speed
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
 
@@ -24,7 +24,6 @@ public class PlayerController : MonoBehaviour
     private Vector3 moveDirection;
     private float verticalVelocity;
     private bool isGrounded;
-    private bool isRunning = false;  // Flag to check if player is running
 
     private float currentRotationX = 0f;
     private float currentRotationY = 0f;
@@ -62,13 +61,23 @@ public class PlayerController : MonoBehaviour
         // Calculate move direction (relative to camera's facing direction)
         Vector3 move = new Vector3(moveX, 0f, moveZ).normalized;
 
-        // Adjust movement speed based on joystick magnitude
+        // Calculate joystick magnitude to determine walk or run
         float joystickMagnitude = Mathf.Clamp01(new Vector2(moveX, moveZ).magnitude);
-        float dynamicSpeed = isRunning ? runSpeed : moveSpeed;
-        float adjustedSpeed = dynamicSpeed * joystickMagnitude;
 
-        // Set animation speed parameter
-        animator.SetFloat("Speed", adjustedSpeed);  // Speed for walk/run animations
+        // Determine movement speed based on joystick magnitude
+        float targetSpeed = joystickMagnitude > 0.5f ? runSpeed : walkSpeed;
+
+        // Update animations based on movement speed
+        if (joystickMagnitude > 0.1f)
+        {
+            animator.SetBool("Walk", joystickMagnitude <= 0.5f);
+            animator.SetBool("Run", joystickMagnitude > 0.5f);
+        }
+        else
+        {
+            animator.SetBool("Walk", false);
+            animator.SetBool("Run", false);
+        }
 
         if (move.magnitude >= 0.1f)
         {
@@ -77,10 +86,10 @@ public class PlayerController : MonoBehaviour
             float angle = Mathf.SmoothDampAngle(transform.eulerAngles.y, targetAngle, ref turnSpeed, 0.1f);
             transform.rotation = Quaternion.Euler(0f, angle, 0f);
 
-            // Move the player forward with dynamic speed
+            // Move the player forward with the calculated speed
             Vector3 moveDirectionForward = Quaternion.Euler(0f, targetAngle, 0f) * Vector3.forward;
-            moveDirection.x = moveDirectionForward.x * adjustedSpeed;
-            moveDirection.z = moveDirectionForward.z * adjustedSpeed;
+            moveDirection.x = moveDirectionForward.x * targetSpeed;
+            moveDirection.z = moveDirectionForward.z * targetSpeed;
         }
         else
         {
@@ -88,9 +97,6 @@ public class PlayerController : MonoBehaviour
             moveDirection.x = 0f;
             moveDirection.z = 0f;
         }
-
-        // Check if the player is running
-        isRunning = Input.GetKey(KeyCode.LeftShift);  // Holding shift for running (optional for mobile, use UI buttons instead)
     }
 
     private void HandleCameraRotation()
@@ -143,7 +149,7 @@ public class PlayerController : MonoBehaviour
         if (isGrounded && verticalVelocity < 0)
         {
             verticalVelocity = -2f; // Slight downward force to keep grounded
-            animator.SetBool("IsJumping", false);  // Reset jumping animation when grounded
+            animator.SetBool("Jump", false);  // Reset jumping animation when grounded
         }
 
         // Apply gravity
@@ -151,24 +157,24 @@ public class PlayerController : MonoBehaviour
         moveDirection.y = verticalVelocity;
     }
 
+    private bool jumping = true;
+
     void setValue()
     {
         jumping = true;
     }
 
-    private bool jumping = true;
     private void Jump()
     {
-        Debug.Log("jump clicked");
+
         if (jumping)
         {
             Debug.Log("Jumping");
             // Calculate jump velocity
             verticalVelocity = Mathf.Sqrt(jumpHeight * -2f * gravity);
-            animator.SetBool("IsJumping", true);  // Set jumping animation
+            animator.SetBool("Jump", true);  // Set jumping animation
             jumping = false;
-            Invoke("setValue",1f);
+            Invoke("setValue", 1f);
         }
-
     }
 }

@@ -42,7 +42,8 @@ RenderSettings:
 --- !u!157 &3
 LightmapSettings:
   m_ObjectHideFlags: 0
-  serializedVersion: 12
+  serializedVersion: 13
+  m_BakeOnSceneLoad: 0
   m_GISettings:
     serializedVersion: 2
     m_BounceScale: 1
@@ -648,6 +649,7 @@ MonoBehaviour:
   m_DeselectOnBackgroundClick: 1
   m_PointerBehavior: 0
   m_CursorLockBehavior: 0
+  m_ScrollDeltaPerTick: 6
 --- !u!114 &790528080
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1108,8 +1110,8 @@ MonoBehaviour:
   jumpButton: {fileID: 394732478}
   cameraTransform: {fileID: 963194228}
   animator: {fileID: 2090412757}
-  moveSpeed: 5
-  runSpeed: 8
+  walkSpeed: 2
+  runSpeed: 5
   turnSpeed: 100
   gravity: -9.81
   jumpHeight: 1
