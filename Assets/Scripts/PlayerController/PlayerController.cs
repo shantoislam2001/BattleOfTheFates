@@ -1,4 +1,6 @@
+using GLTFast.Schema;
 using UnityEngine;
+using UnityEngine.InputSystem.XR;
 using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
@@ -15,7 +17,7 @@ public class PlayerController : MonoBehaviour
     public float gravity = -9.81f;
     public float jumpHeight = 2f;
 
-    public float cameraDistance = 5f;  // Distance of camera from player
+    public float cameraDistance = 2.5f;  // Distance of camera from player
     public float cameraSensitivity = 2f;  // Sensitivity for camera rotation
     public float cameraFollowSpeed = 5f;  // Speed at which the camera follows the player
     public float minCameraY = -30f;  // Minimum vertical angle for camera rotation
@@ -30,6 +32,11 @@ public class PlayerController : MonoBehaviour
 
     private void Start()
     {
+        cameraTransform = GameObject.Find("Camera A").transform;
+        movementJoystick = GameObject.Find("Canvas").transform.Find("Fixed Joystick").GetComponent<Joystick>();
+        jumpButton = GameObject.Find("Canvas").transform.Find("Jump B").GetComponent<Button>();
+        animator = GetComponent<Animator>();
+        controller = GetComponent<CharacterController>();
         // Add jump event listener
         jumpButton.onClick.AddListener(Jump);
     }
