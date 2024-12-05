@@ -12,11 +12,5 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ff873f8005ea3e6479897c739da52a8e, type: 3}
   m_Name: GlobalData1
   m_EditorClassIdentifier: 
-  walkSpeedW: 2
-  runSpeedW: 5
-  jumpHightW: 2
-  gravityW: -9
-  rotationSpeedW: 10
-  lookSencitivity: 0.2
-  cameraSmothTime: 0.1
-  cameraOffset: {x: 0, y: 1.85, z: -2}
+  character: f1
+  isAndroid: 1

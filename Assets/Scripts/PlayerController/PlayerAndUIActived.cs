@@ -27,6 +27,11 @@ public class PlayerAndUIActived : MonoBehaviour
             GameObject ob = Instantiate(m1, position, rotation);
             activeControls(ob);
         }
+        else if (n == "f1")
+        {
+            GameObject ob = Instantiate(f1, position, rotation);
+            activeControls(ob);
+        }
     }
 
     void activeControls(GameObject ob)

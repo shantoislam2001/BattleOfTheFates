@@ -31,6 +31,13 @@ public class CharacterListControl : MonoBehaviour
             readyToShow(prevCharacter);
             globalData.character = n;
         }
+        else if (n == "f1")
+        {
+
+            prevCharacter = Instantiate(f1, position, rotation);
+            readyToShow(prevCharacter);
+            globalData.character = n;
+        }
     }
 
     void readyToShow(GameObject g)

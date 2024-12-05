@@ -20,10 +20,15 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform cardThrowPanel;
     [SerializeField] private Vector2 cardThrowPanelPosition = Vector2.zero;
 
+    [Header("Character list panel")]
+    [SerializeField] private RectTransform characterListPanel;
+    [SerializeField] private Vector2 characterListPanelPosition = Vector2.zero;
+
 
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
+    
 
 
     private void Awake()
@@ -45,6 +50,7 @@ public class UIController : MonoBehaviour
         cardsPanelAnimation= new SlideAnimation(cardsPanel, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, idlePosition);
         enterButtonAnimation= new SlideAnimation(enterButton, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, enterButtonIdlePosition);
         cardThrowAnimation = new SlideAnimation(cardThrowPanel, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, cardThrowPanelPosition);
+        
     }
 
     // Cards 
@@ -86,7 +92,7 @@ public class UIController : MonoBehaviour
         cardThrowAnimation.ClosePanel();
     }
 
-
+   
 
     // Update is called once per frame
     void Update()

@@ -3645,6 +3645,7 @@ GameObject:
   - component: {fileID: 5435802541363939044}
   - component: {fileID: 2023815236692155964}
   - component: {fileID: 547612694777330217}
+  - component: {fileID: 3159226353492245068}
   m_Layer: 0
   m_Name: m1
   m_TagString: Player
@@ -3882,6 +3883,33 @@ MonoBehaviour:
   card: []
   throwedCard: 
   currentSlot: 
+--- !u!114 &3159226353492245068
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8838563538493232338}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5735c970743ee8c448b2e348e9fc930d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  controller: {fileID: 0}
+  movementJoystick: {fileID: 0}
+  jumpButton: {fileID: 0}
+  cameraTransform: {fileID: 0}
+  animator: {fileID: 0}
+  walkSpeed: 2
+  runSpeed: 5
+  turnSpeed: 10
+  gravity: -9.81
+  jumpHeight: 2
+  cameraDistance: 2.5
+  cameraSensitivity: 2
+  cameraFollowSpeed: 5
+  minCameraY: -30
+  maxCameraY: 60
 --- !u!1 &8872591487287812409
 GameObject:
   m_ObjectHideFlags: 0
