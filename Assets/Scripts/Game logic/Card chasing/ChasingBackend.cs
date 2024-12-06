@@ -21,7 +21,7 @@ public class ChasingBackend : MonoBehaviour
     {
         if (p1 == p2)
         {
-            Debug.Log("It's a tie!");
+            
             return "Equal";
         }
 
@@ -44,7 +44,18 @@ public class ChasingBackend : MonoBehaviour
             return "Rebel";
         }
 
-        
+        if (p1 == "Rebel" && (p2 == "Prince" || p2 == "Stepmother" || p2 == "Witch"))
+        {
+
+            return p2;
+        }
+
+        if (p2 == "Rebel" && (p1 == "Prince" || p1 == "Stepmother" || p1 == "Witch"))
+        {
+
+            return p1;
+        }
+
         if (p1 == "king" && (p2 =="Prince" || p2 == "Stepmother" || p2 == "Witch"))
         {
 

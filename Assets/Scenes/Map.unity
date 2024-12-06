@@ -37173,8 +37173,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 04fb2cb82ffcbc84f99e8093f415610e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  ai: {fileID: 1766350684}
   A1cards: {fileID: 1906643591}
   A2cards: {fileID: 1844732144}
+  p1Trigger: {fileID: 1009166056}
 --- !u!4 &1717488916
 Transform:
   m_ObjectHideFlags: 0
