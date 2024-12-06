@@ -160,6 +160,7 @@
     <Compile Include="Assets\Scripts\Scriptable objects\GlobalData.cs" />
     <Compile Include="Assets\Scripts\Game logic\Card chasing\ChasingBackend.cs" />
     <Compile Include="Assets\TextMesh Pro\Examples &amp; Extras\Scripts\CameraController.cs" />
+    <Compile Include="Assets\Scripts\Game logic\MinimapTrigger.cs" />
     <Compile Include="Assets\Scripts\AI Character\AICharacter.cs" />
     <Compile Include="Assets\LeanTween\Framework\LeanTweenExt.cs" />
     <Compile Include="Assets\Joystick Pack\Scripts\Base\Joystick.cs" />
@@ -205,6 +206,8 @@
     <Compile Include="Assets\LeanTween\Examples\Scripts\PathSpline2d.cs" />
     <Compile Include="Assets\Scripts\Others\Outline2D.cs" />
     <Compile Include="Assets\LeanTween\Framework\LTSeq.cs" />
+    <Compile Include="Assets\Scripts\Others\CardsSpawner.cs" />
+    <Compile Include="Assets\Scripts\Game logic\CardPickTrigger.cs" />
     <Compile Include="Assets\Military\StarterAssets\ThirdPersonController\Scripts\ThirdPersonController.cs" />
     <Compile Include="Assets\Photon\PhotonChat\Demos\Common\EventSystemSpawner.cs" />
     <Compile Include="Assets\Scripts\Others\SceneLoader.cs" />

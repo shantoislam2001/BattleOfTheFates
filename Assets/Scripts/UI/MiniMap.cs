@@ -11,7 +11,15 @@ public class MiniMap : MonoBehaviour
 
     void Update()
     {
-        UpdatePointerPosition();
+        if(destination != null)
+        {
+            pointer.gameObject.SetActive(true);
+            UpdatePointerPosition();
+        } else
+        {
+            pointer.gameObject.SetActive(false);
+        }
+        
     }
 
     private void UpdatePointerPosition()
