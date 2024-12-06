@@ -10,6 +10,7 @@ public class UIController : MonoBehaviour
     [SerializeField] private Vector2 idlePosition = Vector2.zero;
     [SerializeField] private GameObject cardsOpeningB;
     [SerializeField] private GameObject cardsClosingB;
+    [SerializeField] private GameObject pickCardB;
 
     [Header("Enter button")]
 
@@ -20,16 +21,17 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform cardThrowPanel;
     [SerializeField] private Vector2 cardThrowPanelPosition = Vector2.zero;
 
-    [Header("Character list panel")]
-    [SerializeField] private RectTransform characterListPanel;
-    [SerializeField] private Vector2 characterListPanelPosition = Vector2.zero;
+    [Header("Card pick up button")]
+    [SerializeField] private RectTransform pickButton;
+    [SerializeField] private Vector2 pickButtonPosition = Vector2.zero;
 
 
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
-    
+    private SlideAnimation pickButtonAnimation;
 
+    private Cards card;
 
     private void Awake()
     {
@@ -47,9 +49,11 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
         cardsPanelAnimation= new SlideAnimation(cardsPanel, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, idlePosition);
         enterButtonAnimation= new SlideAnimation(enterButton, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, enterButtonIdlePosition);
         cardThrowAnimation = new SlideAnimation(cardThrowPanel, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, cardThrowPanelPosition);
+        pickButtonAnimation = new SlideAnimation(pickButton, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, pickButtonPosition);
         
     }
 
@@ -92,11 +96,56 @@ public class UIController : MonoBehaviour
         cardThrowAnimation.ClosePanel();
     }
 
-   
+    public void pickButtonActive()
+    {
+        pickButtonAnimation.OpenPanel();
+    }
+
+    public void pickButtonInactive()
+    {
+        pickButtonAnimation.ClosePanel();
+    }
+
+    #region Pick card button evant
+    // for windows 
+    void pickCardW()
+    {
+        if (pickCardB.activeSelf && Input.GetKeyDown(KeyCode.Return))
+        {
+            pickButtonInactive();
+            keepCard(card.triggeredCard);
+            Destroy(GameObject.Find(card.triggeredCard));
+        }
+    }
+    
+    void keepCard(string c)
+    {
+        if(c.Contains("Prince") )
+        {
+            card.prince += 1;
+        }
+        else if (c.Contains("Stepmother"))
+        {
+            card.stepmother += 1;
+        }
+        else if (c.Contains("Witch"))
+        {
+            card.witch += 1;
+        }
+        else if (c.Contains("Fate"))
+        {
+            card.fate += 1;
+        }
+    }
+
+
+
+    #endregion Pick card button evant
+
 
     // Update is called once per frame
     void Update()
     {
-        
+            pickCardW();
     }
 }

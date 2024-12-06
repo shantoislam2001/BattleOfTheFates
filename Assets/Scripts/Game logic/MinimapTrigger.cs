@@ -5,6 +5,7 @@ using System.Collections;
 public class MinimapTrigger : MonoBehaviour
 {
     public MiniMap map;
+    private Cards card;
     [Header("Gizmo Settings")]
     public Color gizmoColor = Color.green; // Color of the gizmo
     public Vector3 triggerSize = new Vector3(1, 1, 1); // Size of the trigger area
@@ -18,20 +19,12 @@ public class MinimapTrigger : MonoBehaviour
     public void Start()
     {
         map = GameObject.Find("Canvas").transform.Find("Minimap ").GetComponent<MiniMap>();
+        card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
     }
 
 
 
-    private void Reset()
-    {
-        // Automatically adjust collider settings on adding the script
-        BoxCollider boxCollider = GetComponent<BoxCollider>();
-        if (boxCollider == null)
-        {
-            boxCollider = gameObject.AddComponent<BoxCollider>();
-        }
-        boxCollider.isTrigger = true;
-    }
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +35,12 @@ public class MinimapTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-           map.destination = gameObject.transform;
+            if(map.destination == null)
+            {
+                map.destination = gameObject.transform;
+                card.triggeredCard = gameObject.name;
+            }
+          
         }
       
 

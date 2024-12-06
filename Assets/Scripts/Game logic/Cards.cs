@@ -14,6 +14,7 @@ public class Cards : MonoBehaviour
     public List<string> card = new List<string>();
     public string throwedCard;
     public string currentSlot;
+    public string triggeredCard;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

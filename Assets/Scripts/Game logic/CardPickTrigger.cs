@@ -22,16 +22,7 @@ public class CardPickTrigger : MonoBehaviour
 
 
 
-    private void Reset()
-    {
-        // Automatically adjust collider settings on adding the script
-        BoxCollider boxCollider = GetComponent<BoxCollider>();
-        if (boxCollider == null)
-        {
-            boxCollider = gameObject.AddComponent<BoxCollider>();
-        }
-        boxCollider.isTrigger = true;
-    }
+  
 
     private void OnTriggerEnter(Collider other)
     {
@@ -42,7 +33,7 @@ public class CardPickTrigger : MonoBehaviour
 
         if (other.CompareTag("Player"))
         {
-            
+            UIController.Self.pickButtonActive();
         }
 
 
@@ -67,9 +58,9 @@ public class CardPickTrigger : MonoBehaviour
             Debug.Log($"{other.name} exited the trigger zone.");
 
 
-        if (other.CompareTag(tag))
+        if (other.CompareTag("Player"))
         {
-
+            UIController.Self.pickButtonInactive();
         }
 
 
