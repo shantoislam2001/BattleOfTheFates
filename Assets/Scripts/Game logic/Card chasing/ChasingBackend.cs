@@ -8,6 +8,7 @@ public class ChasingBackend : MonoBehaviour
     {
         
         setSlotForAI("AI", "A1");
+        setSlotForAI("AI2", "A1");
     }
 
     public void setSlotForAI(string name, string slot)

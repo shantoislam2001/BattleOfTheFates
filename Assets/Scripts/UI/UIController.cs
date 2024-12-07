@@ -1,4 +1,5 @@
 using UnityEngine;
+using TMPro;
 
 public class UIController : MonoBehaviour
 {
@@ -25,11 +26,34 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform pickButton;
     [SerializeField] private Vector2 pickButtonPosition = Vector2.zero;
 
+    [Header("Win Popup")]
+    [SerializeField] private TextMeshProUGUI winText;
+    [SerializeField] private RectTransform winPopup;
+    [SerializeField] private Vector2 winPopupPosition = Vector2.zero;
+
+    [Header("Tie Popup")]
+    [SerializeField] private TextMeshProUGUI tieText;
+    [SerializeField] private RectTransform tiePopup;
+    [SerializeField] private Vector2 tiePopupPosition = Vector2.zero;
+
+
+    [Header("Lost Popup")]
+    [SerializeField] private TextMeshProUGUI lostText;
+    [SerializeField] private RectTransform lostPopup;
+    [SerializeField] private Vector2 lostPopupPosition = Vector2.zero;
+
+    [Header("Countdown timer")]
+    [SerializeField] private RectTransform cdTimer;
+    [SerializeField] private Vector2 cdTimerPosition = Vector2.zero;
 
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
     private SlideAnimation pickButtonAnimation;
+    private SlideAnimation winPopupAnimation;
+    private SlideAnimation lostPopupAnimation;
+    private SlideAnimation tiePopupAnimation;
+    private SlideAnimation cdTimerAnimation;
 
     private Cards card;
 
@@ -54,6 +78,10 @@ public class UIController : MonoBehaviour
         enterButtonAnimation= new SlideAnimation(enterButton, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, enterButtonIdlePosition);
         cardThrowAnimation = new SlideAnimation(cardThrowPanel, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, cardThrowPanelPosition);
         pickButtonAnimation = new SlideAnimation(pickButton, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, pickButtonPosition);
+        winPopupAnimation = new SlideAnimation(winPopup, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, winPopupPosition);
+        lostPopupAnimation = new SlideAnimation(lostPopup, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, lostPopupPosition);
+        tiePopupAnimation = new SlideAnimation(tiePopup, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, tiePopupPosition);
+        cdTimerAnimation = new SlideAnimation(cdTimer, animationDuration, SlideAnimation.SlideDirection.UpToDown, canvas, cdTimerPosition);
         
     }
 
@@ -105,6 +133,52 @@ public class UIController : MonoBehaviour
     {
         pickButtonAnimation.ClosePanel();
     }
+
+    public void winPopupActive(string t)
+    {
+        winPopupAnimation.OpenPanel();
+        winText.text = "Oponent : " + t;
+
+    }
+
+    public void winPopupInactive()
+    {
+        winPopupAnimation.ClosePanel();
+    }
+
+    public void lostPopupActive(string t)
+    {
+        lostPopupAnimation.OpenPanel();
+        lostText.text = "Oponent : " + t;
+    }
+
+    public void lostPopupInactive()
+    {
+        lostPopupAnimation.ClosePanel();
+    }
+
+    public void tiePopupActive(string t)
+    {
+        tiePopupAnimation.OpenPanel();
+        tieText.text = "Oponent : " + t;
+    }
+
+    public void tiePopupInactive()
+    {
+        tiePopupAnimation.ClosePanel();
+    }
+
+
+    public void cdTimerActive()
+    {
+        cdTimerAnimation.OpenPanel();
+    }
+
+    public void cdTimerInactive()
+    {
+        cdTimerAnimation.ClosePanel();
+    }
+
 
     #region Pick card button evant
     // for windows 

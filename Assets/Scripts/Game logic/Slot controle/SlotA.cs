@@ -22,14 +22,20 @@ public class SlotA : MonoBehaviour
     }
     public void startGame()
     {
-         p1isAI = GameObject.Find(p1Name).CompareTag("AI");
+        GameObject.Find(p1Name).GetComponent<Cards>().throwedCard = "Empty";
+        GameObject.Find(p2Name).GetComponent<Cards>().throwedCard = "Empty";
+        p1isAI = GameObject.Find(p1Name).CompareTag("AI");
          p2isAI = GameObject.Find(p2Name).CompareTag("AI");
 
         if(p1isAI)
         {
             GameObject.Find(p1Name).GetComponent<Cards>().aiCardThrowing();
-            p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
-            Invoke("A1cardHideInTable", 5f);
+            p1card = "Prince"; // GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
+            if(p1card != "Empty")
+            {
+                Invoke("A1cardHideInTable", 5f);
+            }
+           
             Debug.Log("player 1 card "+p1card);
         }
 
@@ -37,7 +43,11 @@ public class SlotA : MonoBehaviour
         {
             GameObject.Find(p2Name).GetComponent<Cards>().aiCardThrowing();
             p2card = GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
-            Invoke("A2cardHideInTable", 5f);
+            if(p1card != "Empty")
+            {
+                Invoke("A2cardHideInTable", 5f);
+            }
+           
         }
 
         Invoke("winer",10f);
@@ -46,6 +56,7 @@ public class SlotA : MonoBehaviour
 
     void winer()
     {
+        Invoke("uiInactive", 5f);
         if (p1isAI == false)
         {
             p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
@@ -53,13 +64,105 @@ public class SlotA : MonoBehaviour
 
         if (p2isAI == false)
         {
-            p2card = GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
+            p2card = "Empty"; // GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
         }
-        A1cards.transform.Find("Hide").gameObject.SetActive(false);
-        A1cards.transform.Find(p1card+" card").gameObject.SetActive(true);
-        A2cards.transform.Find("Hide").gameObject.SetActive(false);
-        A2cards.transform.Find(p2card+" card").gameObject.SetActive(true);
-        winerCard = ChasingBackend.getWiner(p1card, p2card);
+
+        if ((p1card != "Empty"))
+        {
+            A1cards.transform.Find("Hide").gameObject.SetActive(false);
+            A1cards.transform.Find(p1card + " card").gameObject.SetActive(true);
+        } else
+        {
+            if (p1isAI)
+            {
+                ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
+                GameObject.Find(p1Name).tag = "Untagged";
+                Invoke("setTagP1", 30f);
+
+                if (p2card != "Empty") {
+                    if (p2isAI)
+                    {
+                        ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
+                        GameObject.Find(p2Name).tag = "Untagged";
+                        Invoke("setTagP2", 30f);
+                    }
+                    else
+                    {
+                        UIController.Self.winPopupActive(p1card);
+                        p1Trigger.SetActive(true);
+                        Invoke("cardInactive", 5f);
+                       
+                    }
+                } else
+                {
+                    if (p2isAI)
+                    {
+                        ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
+                        GameObject.Find(p2Name).tag = "Untagged";
+                        Invoke("setTagP2", 30f);
+                        p1Trigger.SetActive(true);
+
+                        return;
+                    }
+                    else
+                    {
+                        UIController.Self.lostPopupActive(p1card);
+                        p1Trigger.SetActive(true);
+                        return;
+                    }
+                }
+              
+            }
+            else
+            {
+                UIController.Self.lostPopupActive(p2card);
+               
+            }
+        }
+
+
+        if ((p2card != "Empty"))
+        {
+            A2cards.transform.Find("Hide").gameObject.SetActive(false);
+            A2cards.transform.Find(p2card + " card").gameObject.SetActive(true);
+        }
+        else
+        {
+            
+            if (p2isAI)
+            {
+                ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
+                GameObject.Find(p2Name).tag = "Untagged";
+                Invoke("setTagP2", 30f);
+
+               
+              
+            }
+            else
+            {
+                UIController.Self.lostPopupActive(p1card);
+
+            }
+
+            if (p1isAI)
+            {
+                ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
+                GameObject.Find(p1Name).tag = "Untagged";
+                Invoke("setTagP1", 30f);
+            }else
+            {
+                UIController.Self.winPopupActive(p2card);
+            }
+            p1Trigger.SetActive(true);
+            Invoke("cardInactive", 5f);
+        }
+
+
+        if(p1card != "Empty" && p2card != "Empty")
+        {
+            winerCard = ChasingBackend.getWiner(p1card, p2card);
+        }
+           
         Debug.Log(winerCard);
 
         if (winerCard == p1card)
@@ -77,6 +180,9 @@ public class SlotA : MonoBehaviour
                     ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
                     GameObject.Find(p2Name).tag = "Untagged";
                     Invoke("setTagP2", 30f);
+                }else
+                {
+                    UIController.Self.lostPopupActive(p1card);
                 }
 
             } else
@@ -84,6 +190,7 @@ public class SlotA : MonoBehaviour
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 Debug.Log("you are win");
+                UIController.Self.winPopupActive(p2card);
 
                 if (p2isAI)
                 {
@@ -111,6 +218,9 @@ public class SlotA : MonoBehaviour
                     ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
                     GameObject.Find(p1Name).tag = "Untagged";
                     Invoke("setTagP1", 30f);
+                } else
+                {
+                    UIController.Self.lostPopupActive(p2card);
                 }
 
             }
@@ -119,6 +229,7 @@ public class SlotA : MonoBehaviour
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 Debug.Log("you are win");
+                UIController.Self.winPopupActive(p1card);
 
                 if (p1isAI)
                 {
@@ -133,10 +244,11 @@ public class SlotA : MonoBehaviour
 
         if (winerCard == "Equal")
         {
-
+            UIController.Self.tiePopupActive("same card");
             cardInactive();
             UIController.Self.cardThowPanelOpen();
             startGame();
+            Invoke("uiInactive", 5f);
         }
 
     }
@@ -163,8 +275,22 @@ public class SlotA : MonoBehaviour
 
     void cardInactive()
     {
-        A1cards.transform.Find(p1card + " card").gameObject.SetActive(false);
-        A2cards.transform.Find(p2card + " card").gameObject.SetActive(false );
+        if(p1card != "Empty")
+        {
+            A1cards.transform.Find(p1card + " card").gameObject.SetActive(false);
+        }
+       if (p2card != "Empty")
+        {
+            A2cards.transform.Find(p2card + " card").gameObject.SetActive(false);
+        }
+       
+    }
+
+    void uiInactive()
+    {
+        UIController.Self.winPopupInactive();
+        UIController.Self.lostPopupInactive();
+        UIController.Self.tiePopupInactive();
     }
 
     // Update is called once per frame

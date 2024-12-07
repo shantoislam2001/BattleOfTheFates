@@ -3,20 +3,28 @@
   "WorkspaceRootPath": "D:\\Unity projects\\BattleOfTheFates\\",
   "Documents": [
     {
-      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|d:\\unity projects\\battleofthefates\\assets\\scripts\\game logic\\slot controle\\slota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game logic\\slot controle\\slota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\others\\slottriggerforai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|d:\\unity projects\\battleofthefates\\assets\\scripts\\others\\slottriggerforai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\slottriggerforai.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\card chasing\\chasingbackend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game logic\\card chasing\\chasingbackend.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\slot controle\\slota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game logic\\slot controle\\slota.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\ui\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\others\\countdowntimer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\countdowntimer.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
+    },
+    {
+      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
+      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\others\\areatrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\card chasing\\slot.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -25,10 +33,6 @@
     {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\cardpicktrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
       "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\game logic\\cardpicktrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
-    },
-    {
-      "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\ui\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
-      "RelativeMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|solutionrelative:assets\\scripts\\ui\\uicontroller.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}"
     },
     {
       "AbsoluteMoniker": "D:0:0:{242FABFF-E97C-32EA-EFB5-E4D2AAD8D6AD}|Assembly-CSharp.csproj|D:\\Unity projects\\BattleOfTheFates\\assets\\scripts\\game logic\\minimaptrigger.cs||{A6C744A8-0E4A-4FC6-886A-064283054674}",
@@ -142,7 +146,7 @@
       "DocumentGroups": [
         {
           "DockedWidth": 200,
-          "SelectedChildIndex": 18,
+          "SelectedChildIndex": 20,
           "Children": [
             {
               "$type": "Bookmark",
@@ -154,7 +158,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 5,
+              "DocumentIndex": 4,
+              "Title": "CountDownTimer.cs",
+              "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\CountDownTimer.cs",
+              "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\CountDownTimer.cs",
+              "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\CountDownTimer.cs",
+              "RelativeToolTip": "Assets\\Scripts\\Others\\CountDownTimer.cs",
+              "ViewState": "AQIAAAAAAAAAAAAAAAAAAAQAAAAAAAAA",
+              "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
+              "WhenOpened": "2024-12-07T04:42:07.322Z"
+            },
+            {
+              "$type": "Document",
+              "DocumentIndex": 7,
               "Title": "CardPickTrigger.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\CardPickTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\CardPickTrigger.cs",
@@ -166,7 +182,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 10,
+              "DocumentIndex": 11,
               "Title": "CardsSpawner.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\CardsSpawner.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\CardsSpawner.cs",
@@ -178,7 +194,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 7,
+              "DocumentIndex": 8,
               "Title": "MinimapTrigger.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\MinimapTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\MinimapTrigger.cs",
@@ -190,7 +206,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 8,
+              "DocumentIndex": 9,
               "Title": "MiniMap.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\UI\\MiniMap.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\MiniMap.cs",
@@ -202,7 +218,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 11,
+              "DocumentIndex": 12,
               "Title": "MenuUIController.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Main menu control\\MenuUIController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Main menu control\\MenuUIController.cs",
@@ -214,7 +230,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 13,
+              "DocumentIndex": 14,
               "Title": "PlayerAndUIActived.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\PlayerController\\PlayerAndUIActived.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController\\PlayerAndUIActived.cs",
@@ -226,7 +242,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 14,
+              "DocumentIndex": 15,
               "Title": "CharacterListControl.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Main menu control\\CharacterListControl.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Main menu control\\CharacterListControl.cs",
@@ -238,7 +254,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 18,
+              "DocumentIndex": 19,
               "Title": "StartGame.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Main menu control\\StartGame.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Main menu control\\StartGame.cs",
@@ -250,7 +266,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 17,
+              "DocumentIndex": 18,
               "Title": "SceneLoader.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\SceneLoader.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\SceneLoader.cs",
@@ -262,7 +278,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 15,
+              "DocumentIndex": 16,
               "Title": "PlayerController.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\PlayerController\\PlayerController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\PlayerController\\PlayerController.cs",
@@ -274,7 +290,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 19,
+              "DocumentIndex": 20,
               "Title": "AvatarData.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Library\\PackageCache\\com.readyplayerme.core\\Runtime\\Core\\Scripts\\Data\\AvatarData.cs",
               "RelativeDocumentMoniker": "Library\\PackageCache\\com.readyplayerme.core\\Runtime\\Core\\Scripts\\Data\\AvatarData.cs",
@@ -286,7 +302,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 16,
+              "DocumentIndex": 17,
               "Title": "GlobalData.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Scriptable objects\\GlobalData.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Scriptable objects\\GlobalData.cs",
@@ -298,7 +314,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 12,
+              "DocumentIndex": 13,
               "Title": "TPPControllerW.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Windows player controller\\TPPControllerW.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Windows player controller\\TPPControllerW.cs",
@@ -310,7 +326,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 32,
+              "DocumentIndex": 33,
               "Title": "Global Data.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Scriptable objects\\Global Data.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Scriptable objects\\Global Data.cs",
@@ -322,7 +338,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 20,
+              "DocumentIndex": 21,
               "Title": "CustomizationUIController.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Character customization\\CustomizationUIController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character customization\\CustomizationUIController.cs",
@@ -333,7 +349,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 31,
+              "DocumentIndex": 32,
               "Title": "CharacterCustomizationManager.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Character customization\\CharacterCustomizationManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Character customization\\CharacterCustomizationManager.cs",
@@ -345,32 +361,32 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 0,
+              "DocumentIndex": 2,
               "Title": "SlotA.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Slot controle\\SlotA.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\Slot controle\\SlotA.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Slot controle\\SlotA.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game logic\\Slot controle\\SlotA.cs",
-              "ViewState": "AQIAAHsAAAAAAAAAAAAmwIIAAAAAAAAA",
+              "ViewState": "AQIAAFAAAAAAAAAAAAAgwJwAAAAnAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-30T09:50:46.333Z",
-              "EditorCaption": ""
+              "WhenOpened": "2024-11-30T09:50:46.333Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 1,
+              "DocumentIndex": 0,
               "Title": "SlotTriggerForAI.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
               "RelativeToolTip": "Assets\\Scripts\\Others\\SlotTriggerForAI.cs",
-              "ViewState": "AQIAADMAAAAAAAAAAAAYwD0AAAARAAAA",
+              "ViewState": "AQIAAHQAAAAAAAAAAAAswIAAAAAwAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
-              "WhenOpened": "2024-11-29T14:32:43.821Z"
+              "WhenOpened": "2024-11-29T14:32:43.821Z",
+              "EditorCaption": ""
             },
             {
               "$type": "Document",
-              "DocumentIndex": 4,
+              "DocumentIndex": 6,
               "Title": "Slot.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Card chasing\\Slot.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\Card chasing\\Slot.cs",
@@ -382,19 +398,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 3,
+              "DocumentIndex": 1,
               "Title": "ChasingBackend.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Card chasing\\ChasingBackend.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\Card chasing\\ChasingBackend.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Card chasing\\ChasingBackend.cs",
               "RelativeToolTip": "Assets\\Scripts\\Game logic\\Card chasing\\ChasingBackend.cs",
-              "ViewState": "AQIAAEoAAAAAAAAAAAAgwDYAAAAAAAAA",
+              "ViewState": "AQIAAAUAAAAAAAAAAAAAwAoAAAAZAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-23T08:49:30.013Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 9,
+              "DocumentIndex": 10,
               "Title": "Cards.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Cards.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\Cards.cs",
@@ -406,7 +422,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 24,
+              "DocumentIndex": 25,
               "Title": "aiUseDemo.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\AI Character\\aiUseDemo.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AI Character\\aiUseDemo.cs",
@@ -418,7 +434,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 23,
+              "DocumentIndex": 24,
               "Title": "AIManager.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\AI Character\\AIManager.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AI Character\\AIManager.cs",
@@ -430,7 +446,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 21,
+              "DocumentIndex": 22,
               "Title": "PriorityQueue.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\PriorityQueue.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\PriorityQueue.cs",
@@ -442,7 +458,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 25,
+              "DocumentIndex": 26,
               "Title": "Slot.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Game logic\\Card shsing\\Slot.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Game logic\\Card shsing\\Slot.cs",
@@ -453,7 +469,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 2,
+              "DocumentIndex": 5,
               "Title": "AreaTrigger.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\AreaTrigger.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\AreaTrigger.cs",
@@ -465,19 +481,19 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 6,
+              "DocumentIndex": 3,
               "Title": "UIController.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\UI\\UIController.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI\\UIController.cs",
               "ToolTip": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\UI\\UIController.cs",
               "RelativeToolTip": "Assets\\Scripts\\UI\\UIController.cs",
-              "ViewState": "AQIAAGYAAAAAAAAAAAAiwHQAAAA5AAAA",
+              "ViewState": "AQIAAJ8AAAAAAAAAAMBUwKIAAAALAAAA",
               "Icon": "ae27a6b0-e345-4288-96df-5eaf394ee369.000738|",
               "WhenOpened": "2024-11-19T15:27:18.247Z"
             },
             {
               "$type": "Document",
-              "DocumentIndex": 27,
+              "DocumentIndex": 28,
               "Title": "Pointer.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\Pointer.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\Pointer.cs",
@@ -489,7 +505,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 28,
+              "DocumentIndex": 29,
               "Title": "Outline3D.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\Outline3D.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\Outline3D.cs",
@@ -501,7 +517,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 29,
+              "DocumentIndex": 30,
               "Title": "Outline2D.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\Outline2D.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\Outline2D.cs",
@@ -513,7 +529,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 30,
+              "DocumentIndex": 31,
               "Title": "Outline.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\Others\\Outline.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\Others\\Outline.cs",
@@ -524,7 +540,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 26,
+              "DocumentIndex": 27,
               "Title": "SlideAnimation.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\UI animation\\SlideAnimation.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\UI animation\\SlideAnimation.cs",
@@ -536,7 +552,7 @@
             },
             {
               "$type": "Document",
-              "DocumentIndex": 22,
+              "DocumentIndex": 23,
               "Title": "AICharacter.cs",
               "DocumentMoniker": "D:\\Unity projects\\BattleOfTheFates\\Assets\\Scripts\\AI Character\\AICharacter.cs",
               "RelativeDocumentMoniker": "Assets\\Scripts\\AI Character\\AICharacter.cs",

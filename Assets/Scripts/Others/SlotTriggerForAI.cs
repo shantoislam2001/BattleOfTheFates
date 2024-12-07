@@ -57,6 +57,7 @@ public class SlotTriggerForAI : MonoBehaviour
                 ai.SetTargetForAI(n, Slot.slotPosition[slot]);
                 updateSlotPayority(slot);
                 playerSetInSlot(slot, n);
+                Debug.Log("selecterd slot "+ slot);
                
 
             }else
@@ -124,7 +125,8 @@ public class SlotTriggerForAI : MonoBehaviour
     {
         if(slot == "A1")
         {
-            Slot.emptySlots.UpdatePriority("A2", 2);
+            Slot.emptySlots.UpdatePriority("A2", 0);
+            Debug.Log("slot payority updaated");
         }
         else if (slot == "B1")
         {
