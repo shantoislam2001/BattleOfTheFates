@@ -57,7 +57,7 @@ public class ChasingBackend : MonoBehaviour
             return p1;
         }
 
-        if (p1 == "king" && (p2 =="Prince" || p2 == "Stepmother" || p2 == "Witch"))
+        if (p1 == "King" && (p2 =="Prince" || p2 == "Stepmother" || p2 == "Witch"))
         {
 
             return "King";
@@ -65,7 +65,7 @@ public class ChasingBackend : MonoBehaviour
         if (p2 == "King" && (p1 == "Prince" || p1 == "Stepmother" || p1 == "Witch"))
         {
 
-            return "king";
+            return "King";
         }
 
         

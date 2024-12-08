@@ -216,10 +216,49 @@ public class UIController : MonoBehaviour
 
     #endregion Pick card button evant
 
+    #region Card UI text control
+    // card throw panel
+    public TextMeshProUGUI princeCTT;
+    public TextMeshProUGUI stepmotherCTT;
+    public TextMeshProUGUI witchCTT;
+    public TextMeshProUGUI kingCTT;
+    public TextMeshProUGUI rebelCTT;
+    public TextMeshProUGUI fateCTT;
+
+    // Card display panel
+    public TextMeshProUGUI princeCD;
+    public TextMeshProUGUI stepmotherCD;
+    public TextMeshProUGUI witchCD;
+    public TextMeshProUGUI kingCD;
+    public TextMeshProUGUI rebelCD;
+    public TextMeshProUGUI fateCD;
+
+    void setTextValue()
+    {
+        Cards card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        princeCTT.text = "" + card.prince;
+        stepmotherCTT.text = "" + card.stepmother;
+        witchCTT.text = "" + card.witch;
+        rebelCTT.text = "" + card.rebel;
+        kingCTT.text = "" + card.king;
+        fateCTT.text = "" + card.fate;
+
+        
+        princeCD.text = "" + card.prince;
+        stepmotherCD.text = "" + card.stepmother;
+        witchCD.text = "" + card.witch;
+        rebelCD.text = "" + card.rebel;
+        kingCD.text = "" + card.king;
+        fateCD.text = "" + card.fate;
+    }
+
+
+    #endregion Card UI text control
 
     // Update is called once per frame
     void Update()
     {
-            pickCardW();
+        pickCardW();
+        setTextValue();
     }
 }

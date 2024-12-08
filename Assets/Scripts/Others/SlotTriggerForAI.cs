@@ -126,19 +126,19 @@ public class SlotTriggerForAI : MonoBehaviour
         if(slot == "A1")
         {
             Slot.emptySlots.UpdatePriority("A2", 0);
-            Debug.Log("slot payority updaated");
+            
         }
         else if (slot == "B1")
         {
-            Slot.emptySlots.UpdatePriority("B2", 2);
+            Slot.emptySlots.UpdatePriority("B2", 0);
         }
         else if (slot == "C1")
         {
-            Slot.emptySlots.UpdatePriority("C2", 2);
+            Slot.emptySlots.UpdatePriority("C2", 0);
         }
         else if (slot == "D1")
         {
-            Slot.emptySlots.UpdatePriority("D2", 2);
+            Slot.emptySlots.UpdatePriority("D2", 0);
         }
     }
 

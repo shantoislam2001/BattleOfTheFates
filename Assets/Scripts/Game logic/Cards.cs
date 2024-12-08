@@ -23,7 +23,7 @@ public class Cards : MonoBehaviour
           prince = 2;
           stepmother = 2;
           witch = 2;
-          king = 5;
+          king = 2;
           rebel = 2;
           fate = 2;
         

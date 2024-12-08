@@ -1692,7 +1692,7 @@ MonoBehaviour:
   enterButton: {fileID: 116766819}
   enterButtonIdlePosition: {x: 0, y: -100}
   cardThrowPanel: {fileID: 1920547494}
-  cardThrowPanelPosition: {x: 0, y: 0}
+  cardThrowPanelPosition: {x: 0, y: -100}
   pickButton: {fileID: 1449487121}
   pickButtonPosition: {x: 270, y: 0}
   winText: {fileID: 1457481040}
@@ -1705,7 +1705,19 @@ MonoBehaviour:
   lostPopup: {fileID: 815243016}
   lostPopupPosition: {x: 0, y: 0}
   cdTimer: {fileID: 1823740734}
-  cdTimerPosition: {x: 0, y: 0}
+  cdTimerPosition: {x: 0, y: 150}
+  princeCTT: {fileID: 1088698467}
+  stepmotherCTT: {fileID: 1460616563}
+  witchCTT: {fileID: 365670319}
+  kingCTT: {fileID: 548386230}
+  rebelCTT: {fileID: 449403667}
+  fateCTT: {fileID: 1204670309}
+  princeCD: {fileID: 425417512}
+  stepmotherCD: {fileID: 1502115600}
+  witchCD: {fileID: 304310411}
+  kingCD: {fileID: 138975799}
+  rebelCD: {fileID: 1450363967}
+  fateCD: {fileID: 655199680}
 --- !u!114 &143594266
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -9456,6 +9468,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: AI2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
         type: 3}
@@ -38342,6 +38359,9 @@ MonoBehaviour:
   A1cards: {fileID: 1906643591}
   A2cards: {fileID: 1844732144}
   p1Trigger: {fileID: 1009166056}
+  timer: {fileID: 143594266}
+  timerText: {fileID: 238542032}
+  timerUI: {fileID: 1823740733}
 --- !u!4 &1717488916
 Transform:
   m_ObjectHideFlags: 0
