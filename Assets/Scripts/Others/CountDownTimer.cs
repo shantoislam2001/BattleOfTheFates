@@ -38,7 +38,7 @@ public class CountDownTimer : MonoBehaviour
         public string GetFormattedTime()
         {
             TimeSpan timeSpan = TimeSpan.FromSeconds(RemainingTime);
-            return $"{timeSpan.Hours:D2}:{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
+            return $"{timeSpan.Minutes:D2}:{timeSpan.Seconds:D2}";
         }
 
         public string GetSecondsString()

@@ -88,6 +88,7 @@ public class SlotA : MonoBehaviour
                 if (p2card != "Empty") {
                     if (p2isAI)
                     {
+                        ChasingBackend.addWiner(p2Name);
                         ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
                         GameObject.Find(p2Name).tag = "Untagged";
                         Invoke("setTagP2", 30f);
@@ -152,6 +153,7 @@ public class SlotA : MonoBehaviour
 
             if (p1isAI)
             {
+                ChasingBackend.addWiner(p1Name);
                 ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
                 GameObject.Find(p1Name).tag = "Untagged";
                 Invoke("setTagP1", 30f);
@@ -180,6 +182,7 @@ public class SlotA : MonoBehaviour
                 Invoke("setTagP1", 30f);
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
+                ChasingBackend.addWiner(p1Name);
 
                 if (p2isAI)
                 {
@@ -211,7 +214,7 @@ public class SlotA : MonoBehaviour
         Debug.Log("winer card " + winerCard + " p2 card " + p2card);
         if (winerCard == p2card)
         {
-            Debug.Log("runed");
+            
             if (p2isAI)
             {
                 ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
@@ -219,6 +222,7 @@ public class SlotA : MonoBehaviour
                 Invoke("setTagP2", 30f);
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
+                ChasingBackend.addWiner(p2Name);
 
                 if (p1isAI)
                 {

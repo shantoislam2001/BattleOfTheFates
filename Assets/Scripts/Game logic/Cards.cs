@@ -78,18 +78,87 @@ public class Cards : MonoBehaviour
     // card throwing system for player 
     public void princeCard()
     {
-        if(prince > 0)
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.prince > 0)
         {
-            string currentSlot = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>().currentSlot;
-            Debug.Log("cs "+currentSlot);
-            prince--;
-            throwedCard = "Prince";
+          
+            string currentSlot = cards.currentSlot;
+            cards.prince--;
+            cards.throwedCard = "Prince";
             GameObject.Find("Tables").transform.Find("Slot "+currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);    
             UIController.Self.cardThrowPanelClose();
         }
     }
 
+    public void stepmotherCard()
+    {
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.stepmother > 0)
+        {
+           
+            string currentSlot = cards.currentSlot;
+            cards.stepmother--;
+            cards.throwedCard = "Stepmother";
+            GameObject.Find("Tables").transform.Find("Slot " + currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
 
+    public void witchCard()
+    {
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.witch > 0)
+        {
+
+            string currentSlot = cards.currentSlot;
+            cards.witch--;
+            cards.throwedCard = "Witch";
+            GameObject.Find("Tables").transform.Find("Slot " + currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
+
+    public void kingCard()
+    {
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.king > 0)
+        {
+
+            string currentSlot = cards.currentSlot;
+            cards.king--;
+            cards.throwedCard = "King";
+            GameObject.Find("Tables").transform.Find("Slot " + currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
+
+    public void rebelCard()
+    {
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.rebel > 0)
+        {
+
+            string currentSlot = cards.currentSlot;
+            cards.rebel--;
+            cards.throwedCard = "Rebel";
+            GameObject.Find("Tables").transform.Find("Slot " + currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
+
+    public void fateCard()
+    {
+        Cards cards = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        if (cards.fate > 0)
+        {
+
+            string currentSlot = cards.currentSlot;
+            cards.fate--;
+            cards.throwedCard = "Fate";
+            GameObject.Find("Tables").transform.Find("Slot " + currentSlot).transform.Find("Cards").transform.Find("Hide").gameObject.SetActive(true);
+            UIController.Self.cardThrowPanelClose();
+        }
+    }
 
 
     // Update is called once per frame

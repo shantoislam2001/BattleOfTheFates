@@ -1,14 +1,40 @@
 using UnityEngine;
+using System.Collections.Generic;
+using TMPro;
+using static UnityEngine.GraphicsBuffer;
 
 public class ChasingBackend : MonoBehaviour
 {
+    public CountDownTimer timer;
+    public static PriorityQueue<string> lostPlayer = new PriorityQueue<string>();
+    public static Queue<string> winPlayer = new Queue<string>();
     public AIManager ai;
+    public TextMeshProUGUI chasingEndText;
+    public GameObject chasingEndTimer;
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         
+        timer.StartTimer("t2", 80f, () =>
+        {
+            deleteLostPlayer();
+            chasingEndTimer.SetActive(false);
+            if(nextRoundStartable())
+            {
+                UIController.Self.nextRoundPanelActive();
+                Invoke("nextRoundPanelOff", 5f);
+                Debug.Log("Next round started");
+            }else
+            {
+                Debug.Log("you win fainly");
+            }
+        } );
+        lostPlayer.Enqueue("AI",1);
+        lostPlayer.Enqueue("AI2",1);
+        
         setSlotForAI("AI", "A1");
         setSlotForAI("AI2", "A1");
+        
     }
 
     public void setSlotForAI(string name, string slot)
@@ -88,10 +114,59 @@ public class ChasingBackend : MonoBehaviour
         return p1;
     }
    
+    // control winer 
+    public static void addWiner(string n)
+    {
+        winPlayer.Enqueue(n);
+        lostPlayer.Delete(n);
+        Debug.Log(lostPlayer.Count);
+    }
+
+    public static void deleteLostPlayer()
+    {
+        if(lostPlayer.Count > 0)
+        {
+            for (int i = 0; lostPlayer.Count > 0; i++)
+            {
+                Destroy(GameObject.Find(lostPlayer.Dequeue()));
+            }
+            
+        }
+       
+      
+    }
+
+
+    public bool nextRoundStartable()
+    {
+        if(winPlayer.Count == 0)
+        {
+            return false;
+        }
+
+        for (int i =0; i<winPlayer.Count; i++)
+        {
+            string n = winPlayer.Dequeue();
+            setSlotForAI(n, "A1");
+            ai.ClearTargetForAI(n);
+            lostPlayer.Enqueue(n, 1);
+        }
+        return true;    
+    }
+
+    void nextRoundPanelOff()
+    {
+        UIController.Self.nextRoundPanelInactive();
+    }
 
     // Update is called once per frame
     void Update()
     {
+        if(chasingEndTimer.activeSelf)
+        {
+            chasingEndText.text = timer.GetFormattedTime("t2");
+        }
         
+
     }
 }

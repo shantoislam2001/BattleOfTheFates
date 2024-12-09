@@ -30,6 +30,11 @@ public class AICharacter : MonoBehaviour
         roamTimer = roamInterval;
     }
 
+    public void restrart()
+    {
+        Start();
+    }
+
     void Update()
     {
         // Handle movement towards the target or roaming randomly
