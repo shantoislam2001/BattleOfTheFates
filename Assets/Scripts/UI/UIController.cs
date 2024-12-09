@@ -3,6 +3,8 @@ using TMPro;
 
 public class UIController : MonoBehaviour
 {
+    public MiniMap map;
+    public CardSpawner spawner;
     [Header("Card panel")]
     public static UIController Self { get; private set; }
     [SerializeField] private RectTransform cardsPanel; // Assign panel 2's RectTransform.
@@ -220,10 +222,21 @@ public class UIController : MonoBehaviour
         {
             pickButtonInactive();
             keepCard(card.triggeredCard);
-            Destroy(GameObject.Find(card.triggeredCard));
+          
+           // map.destination = null;
+           spawner.DestroyObjectByName(card.triggeredCard);
         }
     }
     
+    public void cardPickButton()
+    {
+        pickButtonInactive();
+        keepCard(card.triggeredCard);
+
+        // map.destination = null;
+        spawner.DestroyObjectByName(card.triggeredCard);
+    }
+
     void keepCard(string c)
     {
         if(c.Contains("Prince") )

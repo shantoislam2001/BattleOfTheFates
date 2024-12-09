@@ -8,8 +8,8 @@ public class AICharacter : MonoBehaviour
     public Vector3 target;             // Target position to follow
     public float walkSpeed = 2f;       // Speed for walking
     public float runSpeed = 4f;        // Speed for running
-    public float roamRadius = 10f;     // Radius for random roaming
     public float roamInterval = 5f;    // Time interval between random movements
+    public float stoppingDistance = 1f; // Distance to stop near the destination
 
     private NavMeshAgent agent;        // NavMeshAgent component
     private Animator animator;         // Animator component
@@ -28,11 +28,9 @@ public class AICharacter : MonoBehaviour
 
         // Initialize the roam timer
         roamTimer = roamInterval;
-    }
 
-    public void restrart()
-    {
-        Start();
+        // Set stopping distance to ensure smooth stopping
+        agent.stoppingDistance = stoppingDistance;
     }
 
     void Update()
@@ -47,17 +45,13 @@ public class AICharacter : MonoBehaviour
             RoamRandomly();
         }
 
-        // Update animation parameters
+        // Update animation parameters based on agent velocity
         float speed = agent.velocity.magnitude;
         animator.SetBool("IsMoving", speed > 0.1f);
 
-        if (speed >= runSpeed)
+        if (speed > walkSpeed * 0.5f)
         {
-            animator.SetFloat("Speed", 1.0f); // Run animation
-        }
-        else if (speed >= walkSpeed)
-        {
-            animator.SetFloat("Speed", 0.5f); // Walk animation
+            animator.SetFloat("Speed", isRunning ? 1.0f : 0.5f); // Run or Walk animation
         }
         else
         {
@@ -69,7 +63,8 @@ public class AICharacter : MonoBehaviour
     {
         agent.SetDestination(target);
 
-        if (agent.remainingDistance < 0.5f)
+        // Stop moving when close to the target
+        if (agent.remainingDistance <= stoppingDistance && !agent.pathPending)
         {
             agent.isStopped = true;
             animator.SetBool("IsMoving", false);
@@ -86,23 +81,55 @@ public class AICharacter : MonoBehaviour
 
         if (roamTimer <= 0f)
         {
-            // Choose a random direction and position within the roam radius
-            Vector3 randomDirection = Random.insideUnitSphere * roamRadius;
-            randomDirection += transform.position;
-
-            NavMeshHit navHit;
-            if (NavMesh.SamplePosition(randomDirection, out navHit, roamRadius, NavMesh.AllAreas))
+            Vector3 randomPosition = GetValidRandomPosition();
+            if (randomPosition != Vector3.zero)
             {
                 // Set the destination for roaming
-                agent.SetDestination(navHit.position);
+                agent.SetDestination(randomPosition);
 
                 // Randomize between walking and running
-                isRunning = Random.value > 0.5f;
+                isRunning = Random.value > 0.5f; // 50% chance to run or walk
                 agent.speed = isRunning ? runSpeed : walkSpeed;
+
+                agent.isStopped = false; // Ensure agent starts moving
             }
 
             roamTimer = roamInterval;
         }
+
+        // Check if the character has reached its destination
+        if (agent.remainingDistance <= stoppingDistance && !agent.pathPending)
+        {
+            agent.isStopped = true;
+            animator.SetBool("IsMoving", false);
+        }
+    }
+
+    Vector3 GetValidRandomPosition()
+    {
+        // Generate a random position within the NavMesh
+        Vector3 randomDirection = Random.insideUnitSphere * 50f; // Larger roaming area
+        randomDirection += transform.position;
+
+        NavMeshHit navHit;
+        if (NavMesh.SamplePosition(randomDirection, out navHit, 50f, NavMesh.AllAreas))
+        {
+            // Check if the terrain below is walkable
+            RaycastHit hit;
+            if (Physics.Raycast(navHit.position + Vector3.up * 2, Vector3.down, out hit, 4f))
+            {
+                if (hit.collider.CompareTag("Terrain"))
+                {
+                    float slope = Vector3.Angle(hit.normal, Vector3.up);
+                    if (slope <= 30f) // Ensure it's not steep
+                    {
+                        return navHit.position;
+                    }
+                }
+            }
+        }
+
+        return Vector3.zero;
     }
 
     // Prevent collisions with obstacles
@@ -148,5 +175,4 @@ public class AICharacter : MonoBehaviour
     {
         return gameObject.name;
     }
-
 }

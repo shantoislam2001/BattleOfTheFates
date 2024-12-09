@@ -1,15 +1,16 @@
 using UnityEngine;
 
-public class CardsSpawner : MonoBehaviour
+public class CardSpawner : MonoBehaviour
 {
-    public Terrain terrain; 
-    public GameObject[] objectsToSpawn; 
-    public float spawnRadius = 10f;
-    public int numberOfObjects = 10;
-    public float avoidRadius = 2f; 
-    public float destroyDelay = 5f; 
+    public Terrain terrain; // Assign your terrain in the Inspector
+    public GameObject[] objectsToSpawn; // Assign 3 prefabs here
+    public float spawnRadius = 10f; // Radius for spawning
+    public int numberOfObjects = 10; // Number of objects to spawn
+    public float avoidRadius = 2f; // Minimum distance between objects
+    public float destroyDelay = 5f; // Time before destroying the spawned objects
 
     private System.Collections.Generic.List<GameObject> spawnedObjects = new System.Collections.Generic.List<GameObject>();
+    private int spawnCounter = 0; // Counter for unique naming
 
     void Start()
     {
@@ -37,8 +38,15 @@ public class CardsSpawner : MonoBehaviour
             {
                 GameObject prefabToSpawn = objectsToSpawn[Random.Range(0, objectsToSpawn.Length)];
                 GameObject spawnedObject = Instantiate(prefabToSpawn, randomPosition, prefabToSpawn.transform.rotation);
+
+                // Assign a unique name to the spawned object
+                spawnedObject.name = $"{prefabToSpawn.name}_{spawnCounter}";
+                spawnCounter++;
+
                 spawnedObjects.Add(spawnedObject);
-                Destroy(spawnedObject, destroyDelay);
+
+                // Schedule destruction after delay
+                StartCoroutine(DestroyAfterDelay(spawnedObject, destroyDelay));
             }
         }
     }
@@ -71,5 +79,30 @@ public class CardsSpawner : MonoBehaviour
         // Draw the spawn radius in the Scene view
         Gizmos.color = Color.green;
         Gizmos.DrawWireSphere(transform.position, spawnRadius);
+    }
+
+    public void DestroyObjectByName(string objectName)
+    {
+        GameObject objectToDestroy = spawnedObjects.Find(obj => obj.name == objectName);
+        if (objectToDestroy != null)
+        {
+            spawnedObjects.Remove(objectToDestroy); // Remove from the list
+            Destroy(objectToDestroy); // Destroy the GameObject
+            Debug.Log($"Object '{objectName}' has been destroyed.");
+        }
+        else
+        {
+            Debug.LogWarning($"Object with name '{objectName}' not found.");
+        }
+    }
+
+    private System.Collections.IEnumerator DestroyAfterDelay(GameObject obj, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        if (spawnedObjects.Contains(obj))
+        {
+            spawnedObjects.Remove(obj);
+            Destroy(obj);
+        }
     }
 }

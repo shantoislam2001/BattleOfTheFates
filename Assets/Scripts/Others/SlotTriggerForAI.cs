@@ -1,4 +1,7 @@
 using UnityEngine;
+using System;
+
+using System.Collections;
 
 public class SlotTriggerForAI : MonoBehaviour
 {
@@ -58,11 +61,14 @@ public class SlotTriggerForAI : MonoBehaviour
                 updateSlotPayority(slot);
                 playerSetInSlot(slot, n);
                 Debug.Log("selecterd slot "+ slot);
-               
+                slotControlForPlayer(slot);
 
-            }else
+
+
+            }
+            else
             {
-                ai.SetTargetForAI(n, new Vector3(Random.Range(420f,425f), -0.02000013f, Random.Range(320f, 325f)));
+                ai.SetTargetForAI(n, new Vector3(UnityEngine.Random.Range(420f,425f), -0.02000013f, UnityEngine.Random.Range(320f, 325f)));
                 Slot.waitingAI.Enqueue(n);
 
             }
@@ -160,7 +166,7 @@ public class SlotTriggerForAI : MonoBehaviour
     {
         if (slot == "A1")
         {
-            a1.SetActive(false);
+            StartCoroutine(ExecuteAfterDelay(() => a1.SetActive(false), 5f));
             a2.SetActive(true);
         }
         else if (slot == "A2")
@@ -169,7 +175,7 @@ public class SlotTriggerForAI : MonoBehaviour
         }
         else if (slot == "B1")
         {
-            b1.SetActive(false);
+            StartCoroutine(ExecuteAfterDelay(() => b1.SetActive(false), 5f));
             b2.SetActive(true);
         }
         else if (slot == "B2")
@@ -179,7 +185,7 @@ public class SlotTriggerForAI : MonoBehaviour
         }
         else if (slot == "C1")
         {
-            c1.SetActive(false);
+            StartCoroutine(ExecuteAfterDelay(() => c1.SetActive(false), 5f));
             c2.SetActive(true);
         }
         else if (slot == "C2")
@@ -189,7 +195,7 @@ public class SlotTriggerForAI : MonoBehaviour
         }
         else if (slot == "D1")
         {
-            d1.SetActive(false);
+            StartCoroutine(ExecuteAfterDelay(() => d1.SetActive(false), 5f));
             d2.SetActive(true);
         }
         else if (slot == "D2")
@@ -199,6 +205,10 @@ public class SlotTriggerForAI : MonoBehaviour
         }
     }
 
-
+    IEnumerator ExecuteAfterDelay(Action action, float delay)
+    {
+        yield return new WaitForSeconds(delay);
+        action?.Invoke();
+    }
 
 }

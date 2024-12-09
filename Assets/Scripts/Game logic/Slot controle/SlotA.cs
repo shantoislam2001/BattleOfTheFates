@@ -41,7 +41,11 @@ public class SlotA : MonoBehaviour
             }
            
             
+        }else
+        {
+            UIController.Self.cdTimerActive();
         }
+     
 
         if (p2isAI)
         {
@@ -52,25 +56,31 @@ public class SlotA : MonoBehaviour
                 Invoke("A2cardHideInTable", 9f);
             }
            
+        }else
+        {
+            UIController.Self.cdTimerActive();
         }
+      
 
         timer.StartTimer("Chasing timer", 15f, winer);
-        UIController.Self.cdTimerActive();
+      //  UIController.Self.cdTimerActive();
 
     }
 
     void winer()
     {
-        UIController.Self.cdTimerInactive();
+      
         Invoke("uiInactive", 5f);
         if (p1isAI == false)
         {
             p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
+            UIController.Self.cdTimerInactive();
         }
 
         if (p2isAI == false)
         {
             p2card =  GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
+            UIController.Self.cdTimerInactive();
         }
 
         if ((p1card != "Empty"))

@@ -15,25 +15,25 @@ public class ChasingBackend : MonoBehaviour
     void Start()
     {
         
-        timer.StartTimer("t2", 80f, () =>
-        {
-            deleteLostPlayer();
-            chasingEndTimer.SetActive(false);
-            if(nextRoundStartable())
-            {
-                UIController.Self.nextRoundPanelActive();
-                Invoke("nextRoundPanelOff", 5f);
-                Debug.Log("Next round started");
-            }else
-            {
-                Debug.Log("you win fainly");
-            }
-        } );
+        //timer.StartTimer("t2", 80f, () =>
+        //{
+        //    deleteLostPlayer();
+        //    chasingEndTimer.SetActive(false);
+        //    if(nextRoundStartable())
+        //    {
+        //        UIController.Self.nextRoundPanelActive();
+        //        Invoke("nextRoundPanelOff", 5f);
+        //        Debug.Log("Next round started");
+        //    }else
+        //    {
+        //        Debug.Log("you win fainly");
+        //    }
+        //} );
         lostPlayer.Enqueue("AI",1);
         lostPlayer.Enqueue("AI2",1);
         
-        setSlotForAI("AI", "A1");
-        setSlotForAI("AI2", "A1");
+       // setSlotForAI("AI", "A1");
+       // setSlotForAI("AI2", "A1");
         
     }
 

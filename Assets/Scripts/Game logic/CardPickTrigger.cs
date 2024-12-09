@@ -4,7 +4,9 @@ using System.Collections;
 
 public class CardPickTrigger : MonoBehaviour
 {
-   
+    public CardSpawner spawner;
+    public AIManager ai;
+
     [Header("Gizmo Settings")]
     public Color gizmoColor = Color.green; // Color of the gizmo
     public Vector3 triggerSize = new Vector3(1, 1, 1); // Size of the trigger area
@@ -17,7 +19,8 @@ public class CardPickTrigger : MonoBehaviour
 
     public void Start()
     {
-        
+        ai = GameObject.Find("Scripts").GetComponent<AIManager>();
+        spawner = GameObject.Find("Scripts").transform.Find("Card spawner").GetComponent<CardSpawner>();
     }
 
 
@@ -36,7 +39,15 @@ public class CardPickTrigger : MonoBehaviour
             UIController.Self.pickButtonActive();
         }
 
-
+        if (other.CompareTag("AI"))
+        {
+            Cards cards = other.GetComponent<Cards>();
+            keepCard(cards, cards.triggeredCard);
+            spawner.DestroyObjectByName(cards.triggeredCard);
+            ai.SetTargetForAI(other.gameObject.name, new Vector3(414.9537f, -0.0151712f, 323.8016f));
+            ai.ClearTargetForAI(other.gameObject.name);
+            Debug.Log("triger ai " + other.gameObject.name);
+        }
 
     }
 
@@ -64,9 +75,29 @@ public class CardPickTrigger : MonoBehaviour
         }
 
 
+      
 
     }
 
+    void keepCard(Cards card,string c)
+    {
+        if (c.Contains("Prince"))
+        {
+            card.prince += 1;
+        }
+        else if (c.Contains("Stepmother"))
+        {
+            card.stepmother += 1;
+        }
+        else if (c.Contains("Witch"))
+        {
+            card.witch += 1;
+        }
+        else if (c.Contains("Fate"))
+        {
+            card.fate += 1;
+        }
+    }
 
 
     private void OnDrawGizmos()

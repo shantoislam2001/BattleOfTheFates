@@ -1683,6 +1683,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 67ddf9db7cabb4e4aa750e1b7ab68879, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  map: {fileID: 24652925}
+  spawner: {fileID: 458576311}
   cardsPanel: {fileID: 1824134948}
   animationDuration: 0.5
   canvas: {fileID: 816700943}
@@ -5818,6 +5820,59 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 248142936}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &458576309
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 458576310}
+  - component: {fileID: 458576311}
+  m_Layer: 0
+  m_Name: Card spawner
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &458576310
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458576309}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: -88, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 1766350686}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &458576311
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 458576309}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b5e55d254b46e3549bd9242e6b21905d, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  terrain: {fileID: 1066273888}
+  objectsToSpawn:
+  - {fileID: 1238306309979654483, guid: c5d0cab14c5974246bdae8b2c9eae289, type: 3}
+  - {fileID: 3433003969821967091, guid: 04164f8004575a247869850dfe9724d6, type: 3}
+  - {fileID: 3860185070557323477, guid: 2462423d9a40a0547a9051a5bbbd957a, type: 3}
+  spawnRadius: 200
+  numberOfObjects: 50
+  avoidRadius: 2
+  destroyDelay: 300
 --- !u!1 &464341431
 GameObject:
   m_ObjectHideFlags: 0
@@ -25599,7 +25654,7 @@ GameObject:
   - component: {fileID: 1066273891}
   m_Layer: 0
   m_Name: Terrain
-  m_TagString: Untagged
+  m_TagString: Terrain
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 2147483647
@@ -30579,10 +30634,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   target: {x: 0, y: 0, z: 0}
-  walkSpeed: 1.5
+  walkSpeed: 2
   runSpeed: 4
-  roamRadius: 50
   roamInterval: 5
+  stoppingDistance: 0.5
 --- !u!114 &1423883809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -30595,9 +30650,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27fbdb40f8724b41a7a4c3de6e42562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prince: 2
-  stepmother: 2
-  witch: 2
+  prince: 0
+  stepmother: 0
+  witch: 0
   king: 2
   rebel: 2
   fate: 2
@@ -31209,7 +31264,19 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 1449487123}
   m_OnClick:
     m_PersistentCalls:
-      m_Calls: []
+      m_Calls:
+      - m_Target: {fileID: 143594265}
+        m_TargetAssemblyTypeName: UIController, Assembly-CSharp
+        m_MethodName: cardPickButton
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &1449487123
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39035,9 +39102,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c27fbdb40f8724b41a7a4c3de6e42562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  prince: 2
-  stepmother: 2
-  witch: 2
+  prince: 0
+  stepmother: 0
+  witch: 0
   king: 2
   rebel: 2
   fate: 2
@@ -39060,8 +39127,8 @@ MonoBehaviour:
   target: {x: 0, y: 0, z: 0}
   walkSpeed: 2
   runSpeed: 4
-  roamRadius: 50
   roamInterval: 5
+  stoppingDistance: 0.5
 --- !u!195 &1764242443
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39236,6 +39303,7 @@ Transform:
   m_Children:
   - {fileID: 1717488916}
   - {fileID: 464341432}
+  - {fileID: 458576310}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &1766350687
@@ -39814,7 +39882,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1827118030
 Transform:
   m_ObjectHideFlags: 0
@@ -43581,74 +43649,6 @@ MonoBehaviour:
   markerStartUVY: 0.42351627
   customPoints: []
   handleObject: {fileID: 0}
---- !u!1001 &4427713703150165684
-PrefabInstance:
-  m_ObjectHideFlags: 0
-  serializedVersion: 2
-  m_Modification:
-    serializedVersion: 3
-    m_TransformParent: {fileID: 0}
-    m_Modifications:
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalPosition.x
-      value: 388.56015
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalPosition.y
-      value: -0.000024795532
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalPosition.z
-      value: 317.3427
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalRotation.w
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalRotation.x
-      value: 0.7071068
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalRotation.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalRotation.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 90
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.y
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 160437227821294403, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_LocalEulerAnglesHint.z
-      value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 7247165154300539312, guid: 92715c17091afdd4592ca9477b43d91d,
-        type: 3}
-      propertyPath: m_Name
-      value: Fate card
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
-    m_RemovedGameObjects: []
-    m_AddedGameObjects: []
-    m_AddedComponents: []
-  m_SourcePrefab: {fileID: 100100000, guid: 92715c17091afdd4592ca9477b43d91d, type: 3}
 --- !u!1001 &5396134169824544574
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -43770,4 +43770,3 @@ SceneRoots:
   - {fileID: 823827871}
   - {fileID: 1854197503}
   - {fileID: 301815804}
-  - {fileID: 4427713703150165684}

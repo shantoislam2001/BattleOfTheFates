@@ -103,7 +103,7 @@ public class AreaTrigger : MonoBehaviour
 
         // Execute the rotation
         character.transform.eulerAngles = new Vector3(0f, v, 0f);
-        slotControlForAI(slot);
+        
 
 
     }
