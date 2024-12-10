@@ -11,30 +11,61 @@ public class ChasingBackend : MonoBehaviour
     public AIManager ai;
     public TextMeshProUGUI chasingEndText;
     public GameObject chasingEndTimer;
+    public TextMeshProUGUI findingEndText;
+    public GameObject findingEndTimer;
+
+    [Header("Game time settings")]
+    public float findingTime = 0;
+    public float chasingTime = 0;
+
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
-        //timer.StartTimer("t2", 80f, () =>
-        //{
-        //    deleteLostPlayer();
-        //    chasingEndTimer.SetActive(false);
-        //    if(nextRoundStartable())
-        //    {
-        //        UIController.Self.nextRoundPanelActive();
-        //        Invoke("nextRoundPanelOff", 5f);
-        //        Debug.Log("Next round started");
-        //    }else
-        //    {
-        //        Debug.Log("you win fainly");
-        //    }
-        //} );
+
+
+        stratGame();
+
+
+       
         lostPlayer.Enqueue("AI",1);
         lostPlayer.Enqueue("AI2",1);
         
-       // setSlotForAI("AI", "A1");
-       // setSlotForAI("AI2", "A1");
+       
         
+    }
+
+    void stratGame()
+    {
+
+        UIController.Self.feTimerActive();
+        timer.StartTimer("t1", findingTime, () => {
+
+            UIController.Self.feTimerInactive();
+
+            setSlotForAI("AI", "A1");
+            setSlotForAI("AI2", "A1");
+
+            UIController.Self.ceTimerActive();
+            timer.StartTimer("t2", chasingTime, () =>
+            {
+                UIController.Self.ceTimerInactive();
+                deleteLostPlayer();
+                
+                if (nextRoundStartable())
+                {
+                    UIController.Self.nextRoundPanelActive();
+                    Invoke("nextRoundPanelOff", 5f);
+                    Debug.Log("Next round started");
+                    stratGame();
+                }
+                else
+                {
+                    Debug.Log("you win fainly");
+                }
+            });
+
+        });
     }
 
     public void setSlotForAI(string name, string slot)
@@ -166,7 +197,12 @@ public class ChasingBackend : MonoBehaviour
         {
             chasingEndText.text = timer.GetFormattedTime("t2");
         }
-        
+
+        if (findingEndTimer.activeSelf)
+        {
+            findingEndText.text = timer.GetFormattedTime("t1");
+        }
+
 
     }
 }

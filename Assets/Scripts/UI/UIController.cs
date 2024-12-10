@@ -56,6 +56,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform nextRoundPanel;
     [SerializeField] private Vector2 nextRoundPanelPosition = Vector2.zero;
 
+    [Header("Finding end timer")]
+    [SerializeField] private RectTransform feTimer;
+    [SerializeField] private Vector2 feTimerPosition = Vector2.zero;
+
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
@@ -65,6 +69,7 @@ public class UIController : MonoBehaviour
     private SlideAnimation tiePopupAnimation;
     private SlideAnimation cdTimerAnimation;
     private SlideAnimation ceTimerAnimation;
+    private SlideAnimation feTimerAnimation;
     private SlideAnimation nextRoundPanelAnimation;
 
     private Cards card;
@@ -95,6 +100,7 @@ public class UIController : MonoBehaviour
         tiePopupAnimation = new SlideAnimation(tiePopup, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, tiePopupPosition);
         cdTimerAnimation = new SlideAnimation(cdTimer, animationDuration, SlideAnimation.SlideDirection.UpToDown, canvas, cdTimerPosition);
         ceTimerAnimation = new SlideAnimation(ceTimer, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, ceTimerPosition);
+        feTimerAnimation = new SlideAnimation(feTimer, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, feTimerPosition);
         nextRoundPanelAnimation = new SlideAnimation(nextRoundPanel, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, nextRoundPanelPosition);
         
     }
@@ -211,6 +217,16 @@ public class UIController : MonoBehaviour
     public void nextRoundPanelInactive()
     {
         nextRoundPanelAnimation.ClosePanel();
+    }
+
+    public void feTimerActive()
+    {
+        feTimerAnimation.OpenPanel();
+    }
+
+    public void feTimerInactive()
+    {
+        feTimerAnimation.ClosePanel();
     }
 
 
