@@ -10,9 +10,9 @@ public class ChasingBackend : MonoBehaviour
     public static Queue<string> winPlayer = new Queue<string>();
     public AIManager ai;
     public TextMeshProUGUI chasingEndText;
-    public GameObject chasingEndTimer;
+    public bool chasingEndTimerIsOn = false;
     public TextMeshProUGUI findingEndText;
-    public GameObject findingEndTimer;
+    public bool findingEndTimerIsOn = false;
 
     [Header("Game time settings")]
     public float findingTime = 0;
@@ -22,12 +22,21 @@ public class ChasingBackend : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+        //ai.SetTargetForAIWithCallback("AI", new Vector3(414.9537f, -0.0151712f, 323.8016f), () =>
+        //{
+        //    Debug.Log("target rechad ai");
+        //});
+
+        //ai.SetTargetForAIWithCallback("AI2", new Vector3(414.9537f, -0.0151712f, 323.8016f), () =>
+        //{
+        //    Debug.Log("target rechad ai2");
+        //    ai.ClearTargetForAI("AI2");
+        //});
+
+         stratGame();
 
 
-        stratGame();
 
-
-       
         lostPlayer.Enqueue("AI",1);
         lostPlayer.Enqueue("AI2",1);
         
@@ -40,7 +49,7 @@ public class ChasingBackend : MonoBehaviour
 
         UIController.Self.feTimerActive();
         timer.StartTimer("t1", findingTime, () => {
-
+            findingEndTimerIsOn = false;
             UIController.Self.feTimerInactive();
 
             setSlotForAI("AI", "A1");
@@ -49,6 +58,7 @@ public class ChasingBackend : MonoBehaviour
             UIController.Self.ceTimerActive();
             timer.StartTimer("t2", chasingTime, () =>
             {
+                chasingEndTimerIsOn = false;
                 UIController.Self.ceTimerInactive();
                 deleteLostPlayer();
                 
@@ -64,8 +74,10 @@ public class ChasingBackend : MonoBehaviour
                     Debug.Log("you win fainly");
                 }
             });
+            chasingEndTimerIsOn = true;
 
         });
+        findingEndTimerIsOn = true;
     }
 
     public void setSlotForAI(string name, string slot)
@@ -198,12 +210,12 @@ public class ChasingBackend : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(chasingEndTimer.activeSelf)
+        if(chasingEndTimerIsOn)
         {
             chasingEndText.text = timer.GetFormattedTime("t2");
         }
 
-        if (findingEndTimer.activeSelf)
+        if (findingEndTimerIsOn)
         {
             findingEndText.text = timer.GetFormattedTime("t1");
         }

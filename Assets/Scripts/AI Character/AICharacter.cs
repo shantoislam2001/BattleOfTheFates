@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.AI;
+using System;
 
 [RequireComponent(typeof(NavMeshAgent))]
 [RequireComponent(typeof(Animator))]
@@ -16,6 +17,7 @@ public class AICharacter : MonoBehaviour
     private float roamTimer;           // Timer for random roaming
     public bool hasTarget = false;    // Flag to determine if a target is set
     private bool isRunning = false;    // Determines if AI should run
+    public event Action OnReachedDestination;
 
     void Start()
     {
@@ -68,6 +70,10 @@ public class AICharacter : MonoBehaviour
         {
             agent.isStopped = true;
             animator.SetBool("IsMoving", false);
+
+            // Trigger the callback
+            OnReachedDestination?.Invoke();
+            OnReachedDestination = null;
         }
         else
         {
@@ -88,7 +94,7 @@ public class AICharacter : MonoBehaviour
                 agent.SetDestination(randomPosition);
 
                 // Randomize between walking and running
-                isRunning = Random.value > 0.5f; // 50% chance to run or walk
+                isRunning = UnityEngine.Random.value > 0.5f; // 50% chance to run or walk
                 agent.speed = isRunning ? runSpeed : walkSpeed;
 
                 agent.isStopped = false; // Ensure agent starts moving
@@ -108,7 +114,7 @@ public class AICharacter : MonoBehaviour
     Vector3 GetValidRandomPosition()
     {
         // Generate a random position within the NavMesh
-        Vector3 randomDirection = Random.insideUnitSphere * 50f; // Larger roaming area
+        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * 50f; // Larger roaming area
         randomDirection += transform.position;
 
         NavMeshHit navHit;

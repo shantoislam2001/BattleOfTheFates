@@ -39428,9 +39428,9 @@ MonoBehaviour:
   timer: {fileID: 143594266}
   ai: {fileID: 1766350684}
   chasingEndText: {fileID: 1984354408}
-  chasingEndTimer: {fileID: 1515544490}
+  chasingEndTimerIsOn: 0
   findingEndText: {fileID: 1032792423}
-  findingEndTimer: {fileID: 1957441901}
+  findingEndTimerIsOn: 0
   findingTime: 10
   chasingTime: 180
 --- !u!4 &1766350686

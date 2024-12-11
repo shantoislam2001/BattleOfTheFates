@@ -51,7 +51,11 @@ public class MinimapTrigger : MonoBehaviour
             AICharacter aIC = other.GetComponent<AICharacter>();
             if (!aIC.hasTarget)
             {
-                ai.SetTargetForAI(other.gameObject.name, gameObject.transform.position);
+                ai.SetTargetForAIWithCallback(other.gameObject.name, gameObject.transform.position,
+                    () =>
+                    {
+                        ai.ClearTargetForAI(other.gameObject.name);
+                    });
                 other.gameObject.GetComponent<Cards>().triggeredCard = gameObject.name;
                 gameObject.GetComponent<MinimapTrigger>().isTrigger = false; ;
             }

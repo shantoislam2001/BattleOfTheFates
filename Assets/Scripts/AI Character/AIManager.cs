@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using System;
 
 public class AIManager : MonoBehaviour
 {
@@ -69,4 +70,26 @@ public class AIManager : MonoBehaviour
             Debug.LogWarning($"AICharacter with name '{characterName}' not found.");
         }
     }
+
+    // Set a target and a callback for a specific AI by name
+    public void SetTargetForAIWithCallback(string characterName, Vector3 target, Action callback)
+    {
+        if (aiCharacters.TryGetValue(characterName, out AICharacter character))
+        {
+            // Unsubscribe the previous callback to avoid duplicate calls
+            character.OnReachedDestination -= callback;
+
+            // Subscribe the new callback
+            character.OnReachedDestination += callback;
+
+            // Set the target
+            character.SetTarget(target);
+        }
+        else
+        {
+            Debug.LogWarning($"AICharacter with name '{characterName}' not found.");
+        }
+    }
+
+
 }
