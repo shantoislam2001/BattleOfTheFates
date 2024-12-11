@@ -18,10 +18,13 @@ public class ChasingBackend : MonoBehaviour
     public float findingTime = 0;
     public float chasingTime = 0;
 
+    private GameObject ai1;
+    private GameObject ai2;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
+       
         //ai.SetTargetForAIWithCallback("AI", new Vector3(414.9537f, -0.0151712f, 323.8016f), () =>
         //{
         //    Debug.Log("target rechad ai");
@@ -33,15 +36,15 @@ public class ChasingBackend : MonoBehaviour
         //    ai.ClearTargetForAI("AI2");
         //});
 
-         stratGame();
+        
 
 
 
         lostPlayer.Enqueue("AI",1);
         lostPlayer.Enqueue("AI2",1);
-        
-       
-        
+        stratGame();
+
+
     }
 
     void stratGame()
@@ -52,8 +55,13 @@ public class ChasingBackend : MonoBehaviour
             findingEndTimerIsOn = false;
             UIController.Self.feTimerInactive();
 
-            setSlotForAI("AI", "A1");
-            setSlotForAI("AI2", "A1");
+            for (int i = 0; i < lostPlayer.Count; i++)
+            {
+                string n = lostPlayer.Dequeue();
+                setSlotForAI(n);
+                lostPlayer.Enqueue(n, 1);
+            }
+
 
             UIController.Self.ceTimerActive();
             timer.StartTimer("t2", chasingTime, () =>
@@ -80,10 +88,11 @@ public class ChasingBackend : MonoBehaviour
         findingEndTimerIsOn = true;
     }
 
-    public void setSlotForAI(string name, string slot)
+    public void setSlotForAI(string name)
     {
         Vector3 target = new Vector3(414.9537f, -0.0151712f, 323.8016f);
         ai.SetTargetForAI(name, target);
+        
       
     }
 
@@ -193,7 +202,7 @@ public class ChasingBackend : MonoBehaviour
             for (int i = 0; i < winPlayer.Count; i++)
             {
                 string n = winPlayer.Dequeue();
-                setSlotForAI(n, "A1");
+                setSlotForAI(n);
                 ai.ClearTargetForAI(n);
                 lostPlayer.Enqueue(n, 1);
             }
