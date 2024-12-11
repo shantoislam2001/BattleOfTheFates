@@ -9672,7 +9672,7 @@ PrefabInstance:
     - target: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
         type: 3}
       propertyPath: m_IsActive
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 6213075050325087084, guid: 863c031a8670d3e4d8708b005a77bc33,
         type: 3}
@@ -39394,6 +39394,7 @@ GameObject:
   - component: {fileID: 1766350685}
   - component: {fileID: 1766350684}
   - component: {fileID: 1766350687}
+  - component: {fileID: 1766350688}
   m_Layer: 0
   m_Name: Scripts
   m_TagString: Untagged
@@ -39432,7 +39433,7 @@ MonoBehaviour:
   findingEndText: {fileID: 1032792423}
   findingEndTimerIsOn: 0
   findingTime: 10
-  chasingTime: 180
+  chasingTime: 120
 --- !u!4 &1766350686
 Transform:
   m_ObjectHideFlags: 0
@@ -39461,6 +39462,18 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 890ff152fd4fbc64f8683c41930bcf63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1766350688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1766350683}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1d4c5468e29bd3a4baaecd54cf99ee93, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1001 &1770276528

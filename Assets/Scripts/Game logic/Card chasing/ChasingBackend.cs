@@ -2,9 +2,11 @@ using UnityEngine;
 using System.Collections.Generic;
 using TMPro;
 using static UnityEngine.GraphicsBuffer;
+using UnityEngine.SceneManagement;
 
 public class ChasingBackend : MonoBehaviour
 {
+    public static ChasingBackend Self { get; private set; }
     public CountDownTimer timer;
     public static PriorityQueue<string> lostPlayer = new PriorityQueue<string>();
     public static Queue<string> winPlayer = new Queue<string>();
@@ -17,6 +19,7 @@ public class ChasingBackend : MonoBehaviour
     [Header("Game time settings")]
     public float findingTime = 0;
     public float chasingTime = 0;
+    public static bool playerPertisipeted = false;
 
     private GameObject ai1;
     private GameObject ai2;
@@ -24,7 +27,7 @@ public class ChasingBackend : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-       
+        
         //ai.SetTargetForAIWithCallback("AI", new Vector3(414.9537f, -0.0151712f, 323.8016f), () =>
         //{
         //    Debug.Log("target rechad ai");
@@ -36,7 +39,7 @@ public class ChasingBackend : MonoBehaviour
         //    ai.ClearTargetForAI("AI2");
         //});
 
-        
+
 
 
 
@@ -46,6 +49,21 @@ public class ChasingBackend : MonoBehaviour
 
 
     }
+
+
+    private void Awake()
+    {
+        // Ensure there's only one instance
+        if (Self == null)
+        {
+            Self = this;
+        }
+        else
+        {
+            Destroy(gameObject);
+        }
+    }
+
 
     void stratGame()
     {
@@ -61,11 +79,17 @@ public class ChasingBackend : MonoBehaviour
                 setSlotForAI(n);
                 lostPlayer.Enqueue(n, 1);
             }
-
+            
 
             UIController.Self.ceTimerActive();
             timer.StartTimer("t2", chasingTime, () =>
             {
+                if (!playerPertisipeted)
+                {
+                    UIController.Self.lostPopupActive("");
+                    Invoke("backToMainMenu", 5f);
+
+                }
                 chasingEndTimerIsOn = false;
                 UIController.Self.ceTimerInactive();
                 deleteLostPlayer();
@@ -228,7 +252,21 @@ public class ChasingBackend : MonoBehaviour
         {
             findingEndText.text = timer.GetFormattedTime("t1");
         }
-
-
     }
+
+   
+
+    public void backToMainMenu()
+    {
+        LoadingScreen.ShowLoadingScreen();
+        SceneManager.LoadScene("Menu");
+        SceneManager.sceneLoaded += OnSceneLoaded;
+    }
+
+    private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
+    {
+        LoadingScreen.HideLoadingScreen();
+        SceneManager.sceneLoaded -= OnSceneLoaded;
+    }
+
 }

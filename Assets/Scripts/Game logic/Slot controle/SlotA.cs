@@ -108,6 +108,7 @@ public class SlotA : MonoBehaviour
                         UIController.Self.winPopupActive(p1card);
                         p1Trigger.SetActive(true);
                         Invoke("cardInactive", 5f);
+                        ChasingBackend.playerPertisipeted = true;
                        
                     }
                 } else
@@ -125,6 +126,7 @@ public class SlotA : MonoBehaviour
                     {
                         UIController.Self.lostPopupActive(p1card);
                         p1Trigger.SetActive(true);
+                        Invoke("mainMenu", 5f);
                         return;
                     }
                 }
@@ -133,7 +135,7 @@ public class SlotA : MonoBehaviour
             else
             {
                 UIController.Self.lostPopupActive(p2card);
-               
+                Invoke("mainMenu", 5f);
             }
         }
 
@@ -158,7 +160,7 @@ public class SlotA : MonoBehaviour
             else
             {
                 UIController.Self.lostPopupActive(p1card);
-
+                Invoke("mainMenu", 5f);
             }
 
             if (p1isAI)
@@ -170,6 +172,7 @@ public class SlotA : MonoBehaviour
             }else
             {
                 UIController.Self.winPopupActive(p2card);
+                ChasingBackend.playerPertisipeted = true;
             }
             p1Trigger.SetActive(true);
             Invoke("cardInactive", 5f);
@@ -202,6 +205,7 @@ public class SlotA : MonoBehaviour
                 }else
                 {
                     UIController.Self.lostPopupActive(p1card);
+                    Invoke("mainMenu", 5f);
                 }
 
             } else
@@ -210,6 +214,7 @@ public class SlotA : MonoBehaviour
                 p1Trigger.SetActive(true);
                 Debug.Log("you are win");
                 UIController.Self.winPopupActive(p2card);
+                ChasingBackend.playerPertisipeted = true;
 
                 if (p2isAI)
                 {
@@ -242,6 +247,7 @@ public class SlotA : MonoBehaviour
                 } else
                 {
                     UIController.Self.lostPopupActive(p2card);
+                    Invoke("mainMenu", 5f);
                 }
 
             }
@@ -334,4 +340,10 @@ public class SlotA : MonoBehaviour
             timerText.text = timer.GetSecondsString("Chasing timer");
         }
     }
+
+    void mainMenu()
+    {
+        ChasingBackend.Self.backToMainMenu();
+    }
+
 }
