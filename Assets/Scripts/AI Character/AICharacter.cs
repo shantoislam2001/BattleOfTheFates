@@ -14,7 +14,7 @@ public class AICharacter : MonoBehaviour
     private NavMeshAgent agent;        // NavMeshAgent component
     private Animator animator;         // Animator component
     private float roamTimer;           // Timer for random roaming
-    private bool hasTarget = false;    // Flag to determine if a target is set
+    public bool hasTarget = false;    // Flag to determine if a target is set
     private bool isRunning = false;    // Determines if AI should run
 
     void Start()

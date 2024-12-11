@@ -170,19 +170,24 @@ public class ChasingBackend : MonoBehaviour
 
     public bool nextRoundStartable()
     {
-        if(winPlayer.Count == 0)
+        if (winPlayer.Count == 0)
         {
             return false;
-        }
 
-        for (int i =0; i<winPlayer.Count; i++)
-        {
-            string n = winPlayer.Dequeue();
-            setSlotForAI(n, "A1");
-            ai.ClearTargetForAI(n);
-            lostPlayer.Enqueue(n, 1);
         }
-        return true;    
+        else
+        {
+
+            for (int i = 0; i < winPlayer.Count; i++)
+            {
+                string n = winPlayer.Dequeue();
+                setSlotForAI(n, "A1");
+                ai.ClearTargetForAI(n);
+                lostPlayer.Enqueue(n, 1);
+            }
+            return true;
+
+        }
     }
 
     void nextRoundPanelOff()

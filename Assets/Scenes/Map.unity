@@ -30777,6 +30777,7 @@ MonoBehaviour:
   runSpeed: 4
   roamInterval: 5
   stoppingDistance: 0.5
+  hasTarget: 0
 --- !u!114 &1423883809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -39268,6 +39269,7 @@ MonoBehaviour:
   runSpeed: 4
   roamInterval: 5
   stoppingDistance: 0.5
+  hasTarget: 0
 --- !u!195 &1764242443
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -39430,7 +39432,7 @@ MonoBehaviour:
   findingEndText: {fileID: 1032792423}
   findingEndTimer: {fileID: 1957441901}
   findingTime: 10
-  chasingTime: 60
+  chasingTime: 180
 --- !u!4 &1766350686
 Transform:
   m_ObjectHideFlags: 0

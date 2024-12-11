@@ -48,8 +48,14 @@ public class MinimapTrigger : MonoBehaviour
 
         if (other.CompareTag("AI"))
         {
-            ai.SetTargetForAI(other.gameObject.name, gameObject.transform.position);
-            other.gameObject.GetComponent<Cards>().triggeredCard = gameObject.name;
+            AICharacter aIC = other.GetComponent<AICharacter>();
+            if (!aIC.hasTarget)
+            {
+                ai.SetTargetForAI(other.gameObject.name, gameObject.transform.position);
+                other.gameObject.GetComponent<Cards>().triggeredCard = gameObject.name;
+                gameObject.GetComponent<MinimapTrigger>().isTrigger = false; ;
+            }
+           
            
 
         }
