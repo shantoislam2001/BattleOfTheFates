@@ -1,4 +1,5 @@
 using UnityEngine;
+using System.Collections.Generic;
 
 public class CardSpawner : MonoBehaviour
 {
@@ -9,8 +10,11 @@ public class CardSpawner : MonoBehaviour
     public float avoidRadius = 2f; // Minimum distance between objects
     public float destroyDelay = 5f; // Time before destroying the spawned objects
 
-    private System.Collections.Generic.List<GameObject> spawnedObjects = new System.Collections.Generic.List<GameObject>();
+    private List<GameObject> spawnedObjects = new List<GameObject>();
     private int spawnCounter = 0; // Counter for unique naming
+
+    // Static queue to store names of spawned objects
+    public static PriorityQueue<string> cardName = new PriorityQueue<string>();
 
     void Start()
     {
@@ -44,6 +48,9 @@ public class CardSpawner : MonoBehaviour
                 spawnCounter++;
 
                 spawnedObjects.Add(spawnedObject);
+
+                // Enqueue the name of the spawned object
+                cardName.Enqueue(spawnedObject.name,1);
 
                 // Schedule destruction after delay
                 StartCoroutine(DestroyAfterDelay(spawnedObject, destroyDelay));

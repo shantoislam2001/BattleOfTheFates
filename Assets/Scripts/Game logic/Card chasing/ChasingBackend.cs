@@ -19,6 +19,8 @@ public class ChasingBackend : MonoBehaviour
     public bool chasingEndTimerIsOn = false;
     public TextMeshProUGUI findingEndText;
     public bool findingEndTimerIsOn = false;
+    private bool aiRoam = true;
+    public CardSpawner spawner;
 
     [Header("Game time settings")]
     public float findingTime = 0;
@@ -59,7 +61,7 @@ public class ChasingBackend : MonoBehaviour
        // lostPlayer.Enqueue("AI", 1);
         lostPlayer.Enqueue("AI2", 1);
         stratGame();
-
+        startRoam();
 
     }
 
@@ -514,6 +516,62 @@ public class ChasingBackend : MonoBehaviour
             AICharacter.SetTarget(n, waitingP8);
         }
 
+    }
+
+    void roamAI(string n)
+    {
+        if(CardSpawner.cardName.Count > 0 && aiRoam)
+        {
+            Cards cards = GameObject.Find(n).GetComponent<Cards>();
+            string cardName = CardSpawner.cardName.Dequeue();
+
+            AICharacter.SetTarget(n, GameObject.Find(cardName).transform, () =>
+            {
+                GameObject ob = GameObject.Find(cardName);
+                if (ob != null)
+                {
+                    keepCard(GameObject.Find(n).GetComponent<Cards>(),cardName);
+                    spawner.DestroyObjectByName(cardName);
+                }
+                roamAI(n);
+            });
+            AICharacter.SetSpeed(n, 2f);
+        }
+    }
+
+    Transform getRoamTarget()
+    {
+        return GameObject.Find(CardSpawner.cardName.Dequeue()).transform;
+    }
+
+    void startRoam()
+    {
+        for (int i = 0; i < lostPlayer.Count; i++)
+        {
+            string n = lostPlayer.Dequeue();
+            roamAI(n);
+            lostPlayer.Enqueue(n, 1);
+        }
+    }
+
+    void keepCard(Cards card, string c)
+    {
+        if (c.Contains("Prince"))
+        {
+            card.prince += 1;
+        }
+        else if (c.Contains("Stepmother"))
+        {
+            card.stepmother += 1;
+        }
+        else if (c.Contains("Witch"))
+        {
+            card.witch += 1;
+        }
+        else if (c.Contains("Fate"))
+        {
+            card.fate += 1;
+        }
     }
 
 }

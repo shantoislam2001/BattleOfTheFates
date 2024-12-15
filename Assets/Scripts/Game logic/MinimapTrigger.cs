@@ -4,7 +4,7 @@ using System.Collections;
 
 public class MinimapTrigger : MonoBehaviour
 {
-    public AIManager ai;
+    
     public MiniMap map;
     private Cards card;
     [Header("Gizmo Settings")]
@@ -21,7 +21,7 @@ public class MinimapTrigger : MonoBehaviour
     {
         map = GameObject.Find("Canvas").transform.Find("Minimap ").GetComponent<MiniMap>();
         card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
-        ai = GameObject.Find("Scripts").GetComponent<AIManager>();
+        
     }
 
 
@@ -46,23 +46,7 @@ public class MinimapTrigger : MonoBehaviour
         }
 
 
-        if (other.CompareTag("AI"))
-        {
-            AICharacter aIC = other.GetComponent<AICharacter>();
-            if (true)
-            {
-                ai.SetTargetForAIWithCallback(other.gameObject.name, gameObject.transform.position,
-                    () =>
-                    {
-                        ai.ClearTargetForAI(other.gameObject.name);
-                    });
-                other.gameObject.GetComponent<Cards>().triggeredCard = gameObject.name;
-                gameObject.GetComponent<MinimapTrigger>().isTrigger = false; ;
-            }
-           
-           
-
-        }
+       
 
     }
 

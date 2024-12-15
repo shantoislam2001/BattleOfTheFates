@@ -5789,7 +5789,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &458576310
 Transform:
   m_ObjectHideFlags: 0
@@ -5825,7 +5825,7 @@ MonoBehaviour:
   spawnRadius: 200
   numberOfObjects: 50
   avoidRadius: 2
-  destroyDelay: 59
+  destroyDelay: 300
 --- !u!1 &464341431
 GameObject:
   m_ObjectHideFlags: 0
@@ -40328,7 +40328,8 @@ MonoBehaviour:
   chasingEndTimerIsOn: 0
   findingEndText: {fileID: 1032792423}
   findingEndTimerIsOn: 0
-  findingTime: 30
+  spawner: {fileID: 458576311}
+  findingTime: 300
   chasingTime: 120
   slotA: {fileID: 1717488915}
   slotB: {fileID: 1717488919}
