@@ -60,6 +60,10 @@ public class UIController : MonoBehaviour
     [SerializeField] private RectTransform feTimer;
     [SerializeField] private Vector2 feTimerPosition = Vector2.zero;
 
+    [Header("Finally win panel")]
+    [SerializeField] private RectTransform finallyWinPanel;
+    [SerializeField] private Vector2 finallyWinPanelPosition = Vector2.zero;
+
     private SlideAnimation cardsPanelAnimation;
     private SlideAnimation enterButtonAnimation;
     private SlideAnimation cardThrowAnimation;
@@ -71,6 +75,7 @@ public class UIController : MonoBehaviour
     private SlideAnimation ceTimerAnimation;
     private SlideAnimation feTimerAnimation;
     private SlideAnimation nextRoundPanelAnimation;
+    private SlideAnimation finallyWinPanelAnimation;
 
     private Cards card;
 
@@ -102,6 +107,7 @@ public class UIController : MonoBehaviour
         ceTimerAnimation = new SlideAnimation(ceTimer, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, ceTimerPosition);
         feTimerAnimation = new SlideAnimation(feTimer, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, feTimerPosition);
         nextRoundPanelAnimation = new SlideAnimation(nextRoundPanel, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, nextRoundPanelPosition);
+        finallyWinPanelAnimation = new SlideAnimation(finallyWinPanel, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, finallyWinPanelPosition);
         
     }
 
@@ -227,6 +233,16 @@ public class UIController : MonoBehaviour
     public void feTimerInactive()
     {
         feTimerAnimation.ClosePanel();
+    }
+
+    public void finallyWinActive()
+    {
+        finallyWinPanelAnimation.OpenPanel();
+    }
+
+    public void finallyWinInactive()
+    {
+        finallyWinPanelAnimation.ClosePanel();
     }
 
 

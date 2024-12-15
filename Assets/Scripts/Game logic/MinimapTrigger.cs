@@ -49,7 +49,7 @@ public class MinimapTrigger : MonoBehaviour
         if (other.CompareTag("AI"))
         {
             AICharacter aIC = other.GetComponent<AICharacter>();
-            if (!aIC.hasTarget)
+            if (true)
             {
                 ai.SetTargetForAIWithCallback(other.gameObject.name, gameObject.transform.position,
                     () =>

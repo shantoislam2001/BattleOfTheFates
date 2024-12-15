@@ -1,184 +1,148 @@
+using System;
+using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.AI;
-using System;
 
-[RequireComponent(typeof(NavMeshAgent))]
-[RequireComponent(typeof(Animator))]
 public class AICharacter : MonoBehaviour
 {
-    public Vector3 target;             // Target position to follow
-    public float walkSpeed = 2f;       // Speed for walking
-    public float runSpeed = 4f;        // Speed for running
-    public float roamInterval = 5f;    // Time interval between random movements
-    public float stoppingDistance = 1f; // Distance to stop near the destination
+    private NavMeshAgent agent;
+    private Animator animator;
+    private static Dictionary<string, AICharacter> characters = new Dictionary<string, AICharacter>();
 
-    private NavMeshAgent agent;        // NavMeshAgent component
-    private Animator animator;         // Animator component
-    private float roamTimer;           // Timer for random roaming
-    public bool hasTarget = false;    // Flag to determine if a target is set
-    private bool isRunning = false;    // Determines if AI should run
-    public event Action OnReachedDestination;
+    public string characterName;
+    public Transform target;
+    private Action onTargetReachedCallback;
 
-    void Start()
+    private void Awake()
     {
-        // Get the NavMeshAgent and Animator components
+        if (string.IsNullOrEmpty(characterName))
+        {
+            Debug.LogError($"Character {gameObject.name} needs a unique name.");
+            enabled = false;
+            return;
+        }
+
+        if (characters.ContainsKey(characterName))
+        {
+            Debug.LogError($"Character name {characterName} already exists.");
+            enabled = false;
+            return;
+        }
+
+        characters[characterName] = this;
+    }
+
+    private void Start()
+    {
         agent = GetComponent<NavMeshAgent>();
         animator = GetComponent<Animator>();
-
-        // Set the initial speed
-        agent.speed = walkSpeed;
-
-        // Initialize the roam timer
-        roamTimer = roamInterval;
-
-        // Set stopping distance to ensure smooth stopping
-        agent.stoppingDistance = stoppingDistance;
     }
 
-    void Update()
+    private void Update()
     {
-        // Handle movement towards the target or roaming randomly
-        if (hasTarget)
+        if (target != null)
         {
-            MoveTowardsTarget();
-        }
-        else
-        {
-            RoamRandomly();
-        }
+            float distanceToTarget = Vector3.Distance(transform.position, target.position);
 
-        // Update animation parameters based on agent velocity
-        float speed = agent.velocity.magnitude;
-        animator.SetBool("IsMoving", speed > 0.1f);
-
-        if (speed > walkSpeed * 0.5f)
-        {
-            animator.SetFloat("Speed", isRunning ? 1.0f : 0.5f); // Run or Walk animation
-        }
-        else
-        {
-            animator.SetFloat("Speed", 0.0f); // Idle animation
-        }
-    }
-
-    void MoveTowardsTarget()
-    {
-        agent.SetDestination(target);
-
-        // Stop moving when close to the target
-        if (agent.remainingDistance <= stoppingDistance && !agent.pathPending)
-        {
-            agent.isStopped = true;
-            animator.SetBool("IsMoving", false);
-
-            // Trigger the callback
-            OnReachedDestination?.Invoke();
-            OnReachedDestination = null;
-        }
-        else
-        {
-            agent.isStopped = false;
-        }
-    }
-
-    void RoamRandomly()
-    {
-        roamTimer -= Time.deltaTime;
-
-        if (roamTimer <= 0f)
-        {
-            Vector3 randomPosition = GetValidRandomPosition();
-            if (randomPosition != Vector3.zero)
+            if (distanceToTarget > agent.stoppingDistance)
             {
-                // Set the destination for roaming
-                agent.SetDestination(randomPosition);
-
-                // Randomize between walking and running
-                isRunning = UnityEngine.Random.value > 0.5f; // 50% chance to run or walk
-                agent.speed = isRunning ? runSpeed : walkSpeed;
-
-                agent.isStopped = false; // Ensure agent starts moving
+                agent.isStopped = false;
+                agent.destination = target.position;
+                animator.SetFloat("Speed", agent.velocity.magnitude);
             }
-
-            roamTimer = roamInterval;
-        }
-
-        // Check if the character has reached its destination
-        if (agent.remainingDistance <= stoppingDistance && !agent.pathPending)
-        {
-            agent.isStopped = true;
-            animator.SetBool("IsMoving", false);
-        }
-    }
-
-    Vector3 GetValidRandomPosition()
-    {
-        // Generate a random position within the NavMesh
-        Vector3 randomDirection = UnityEngine.Random.insideUnitSphere * 50f; // Larger roaming area
-        randomDirection += transform.position;
-
-        NavMeshHit navHit;
-        if (NavMesh.SamplePosition(randomDirection, out navHit, 50f, NavMesh.AllAreas))
-        {
-            // Check if the terrain below is walkable
-            RaycastHit hit;
-            if (Physics.Raycast(navHit.position + Vector3.up * 2, Vector3.down, out hit, 4f))
+            else
             {
-                if (hit.collider.CompareTag("Terrain"))
+                if (!agent.isStopped)
                 {
-                    float slope = Vector3.Angle(hit.normal, Vector3.up);
-                    if (slope <= 30f) // Ensure it's not steep
+                    agent.isStopped = true;
+                    agent.velocity = Vector3.zero;
+                    animator.SetFloat("Speed", 0f);
+
+                    // Trigger callback if assigned
+                    if (onTargetReachedCallback != null)
                     {
-                        return navHit.position;
+                        var callback = onTargetReachedCallback;
+                        onTargetReachedCallback = null; // Clear callback only after invocation
+                        callback.Invoke();
                     }
                 }
             }
         }
-
-        return Vector3.zero;
     }
 
-    // Prevent collisions with obstacles
-    void OnCollisionEnter(Collision collision)
+    private void OnDestroy()
     {
-        if (collision.gameObject.CompareTag("Player") || collision.gameObject.CompareTag("AI"))
+        if (characters.ContainsKey(characterName))
         {
-            agent.isStopped = true;
-            roamTimer = 0f; // Trigger immediate random roam
+            characters.Remove(characterName);
         }
     }
 
-    // Public method to set the target as a Vector3 position
-    public void SetTarget(Vector3 newTarget)
+    // Static Methods
+
+    public static void SetTarget(string name, Transform newTarget, Action callback = null)
     {
-        target = newTarget;
-        hasTarget = true;
-        agent.isStopped = false;
+        if (characters.TryGetValue(name, out AICharacter character))
+        {
+            character.target = newTarget;
+            character.onTargetReachedCallback = callback;
+        }
+        else
+        {
+            Debug.LogWarning($"Character with name {name} not found.");
+        }
     }
 
-    // Public method to clear the target and allow roaming
-    public void ClearTarget()
+    public static void StartRunning(string name)
     {
-        hasTarget = false;
+        if (characters.TryGetValue(name, out AICharacter character))
+        {
+            character.agent.isStopped = false;
+            character.animator.SetBool("IsRunning", true);
+            character.agent.speed = 6f; // Set running speed
+        }
+        else
+        {
+            Debug.LogWarning($"Character with name {name} not found.");
+        }
     }
 
-    // Public method to switch to running
-    public void StartRunning()
+    public static void StopMoving(string name)
     {
-        isRunning = true;
-        agent.speed = runSpeed;
+        if (characters.TryGetValue(name, out AICharacter character))
+        {
+            character.agent.isStopped = true;
+            character.agent.velocity = Vector3.zero;
+            character.animator.SetFloat("Speed", 0f);
+        }
+        else
+        {
+            Debug.LogWarning($"Character with name {name} not found.");
+        }
     }
 
-    // Public method to switch to walking
-    public void StopRunning()
+    public static void StartMoving(string name)
     {
-        isRunning = false;
-        agent.speed = walkSpeed;
+        if (characters.TryGetValue(name, out AICharacter character))
+        {
+            character.agent.isStopped = false;
+            character.animator.SetFloat("Speed", character.agent.velocity.magnitude);
+        }
+        else
+        {
+            Debug.LogWarning($"Character with name {name} not found.");
+        }
     }
 
-    // Public method to check the AI GameObject name
-    public string GetCharacterName()
+    public static void SetSpeed(string name, float speed)
     {
-        return gameObject.name;
+        if (characters.TryGetValue(name, out AICharacter character))
+        {
+            character.agent.speed = speed;
+        }
+        else
+        {
+            Debug.LogWarning($"Character with name {name} not found.");
+        }
     }
 }

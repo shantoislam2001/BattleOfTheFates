@@ -22,6 +22,9 @@ public class SlotTriggerForAI : MonoBehaviour
     public UnityEngine.Events.UnityEvent onTriggerStay;  // Event when an object stays
     public UnityEngine.Events.UnityEvent onTriggerExit;  // Event when an object exits
     public SlotA slotA;
+    public SlotB slotB;
+    public SlotC slotC;
+    public SlotD slotD;
 
     public GameObject a1;
     public GameObject a2;
@@ -158,6 +161,33 @@ public class SlotTriggerForAI : MonoBehaviour
         {
             SlotA.p2Name = player;
             slotA.startGame();
+        }
+        else if (slot == "B1")
+        {
+            SlotB.p1Name = player;
+        }
+        else if (slot == "B2")
+        {
+            SlotB.p2Name = player;
+            slotB.startGame();
+        }
+        else if (slot == "C1")
+        {
+            SlotC.p1Name = player;
+        }
+        else if (slot == "C2")
+        {
+            SlotC.p2Name = player;
+            slotC.startGame();
+        }
+        else if (slot == "D1")
+        {
+            SlotD.p1Name = player;
+        }
+        else if (slot == "D2")
+        {
+            SlotD.p2Name = player;
+            slotD.startGame();
         }
     }
 

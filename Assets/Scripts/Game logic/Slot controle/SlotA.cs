@@ -16,70 +16,78 @@ public class SlotA : MonoBehaviour
     public GameObject p1Trigger;
     public CountDownTimer timer;
     public TextMeshProUGUI timerText;
-    public GameObject timerUI;
-    
+    public bool timerUIisOn = false;
+
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
     public void startGame()
     {
         GameObject.Find(p1Name).GetComponent<Cards>().throwedCard = "Empty";
         GameObject.Find(p2Name).GetComponent<Cards>().throwedCard = "Empty";
         p1isAI = GameObject.Find(p1Name).CompareTag("AI");
-         p2isAI = GameObject.Find(p2Name).CompareTag("AI");
+        p2isAI = GameObject.Find(p2Name).CompareTag("AI");
 
-        if(p1isAI)
+        if (p1isAI)
         {
             GameObject.Find(p1Name).GetComponent<Cards>().aiCardThrowing();
-            p1card =  GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
-            if(p1card != "Empty")
+            p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
+            if (p1card != "Empty")
             {
                 Invoke("A1cardHideInTable", 9f);
             }
-           
-            
-        }else
+
+
+        }
+        else
         {
             UIController.Self.cdTimerActive();
         }
-     
+
 
         if (p2isAI)
         {
             GameObject.Find(p2Name).GetComponent<Cards>().aiCardThrowing();
             p2card = GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
-            if(p1card != "Empty")
+            if (p1card != "Empty")
             {
                 Invoke("A2cardHideInTable", 9f);
             }
-           
-        }else
+
+        }
+        else
         {
             UIController.Self.cdTimerActive();
         }
-      
 
-        timer.StartTimer("Chasing timer", 15f, winer);
-      //  UIController.Self.cdTimerActive();
+
+        timer.StartTimer("Chasing timer", 15f, () =>
+        {
+            timerUIisOn = false;
+            winer();
+        } );
+        timerUIisOn = true;
+        
 
     }
 
     void winer()
     {
-      
+        
         Invoke("uiInactive", 5f);
         if (p1isAI == false)
         {
+            
             p1card = GameObject.Find(p1Name).GetComponent<Cards>().throwedCard;
             UIController.Self.cdTimerInactive();
         }
 
         if (p2isAI == false)
         {
-            p2card =  GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
+            p2card = GameObject.Find(p2Name).GetComponent<Cards>().throwedCard;
             UIController.Self.cdTimerInactive();
         }
 
@@ -87,21 +95,21 @@ public class SlotA : MonoBehaviour
         {
             A1cards.transform.Find("Hide").gameObject.SetActive(false);
             A1cards.transform.Find(p1card + " card").gameObject.SetActive(true);
-        } else
+        }
+        else
         {
             if (p1isAI)
             {
-                ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                GameObject.Find(p1Name).tag = "Untagged";
-                Invoke("setTagP1", 30f);
+                ChasingBackend.Self.goWaiting(p1Name);
+               
 
-                if (p2card != "Empty") {
+                if (p2card != "Empty")
+                {
                     if (p2isAI)
                     {
                         ChasingBackend.addWiner(p2Name);
-                        ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                        GameObject.Find(p2Name).tag = "Untagged";
-                        Invoke("setTagP2", 30f);
+                        ChasingBackend.Self.goWaiting(p2Name);
+                       
                     }
                     else
                     {
@@ -109,15 +117,14 @@ public class SlotA : MonoBehaviour
                         p1Trigger.SetActive(true);
                         Invoke("cardInactive", 5f);
                         ChasingBackend.playerPertisipeted = true;
-                       
+
                     }
-                } else
+                }
+                else
                 {
                     if (p2isAI)
                     {
-                        ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                        GameObject.Find(p2Name).tag = "Untagged";
-                        Invoke("setTagP2", 30f);
+                        ChasingBackend.Self.goWaiting(p2Name);
                         p1Trigger.SetActive(true);
 
                         return;
@@ -130,7 +137,7 @@ public class SlotA : MonoBehaviour
                         return;
                     }
                 }
-              
+
             }
             else
             {
@@ -147,15 +154,13 @@ public class SlotA : MonoBehaviour
         }
         else
         {
-            
+
             if (p2isAI)
             {
-                ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                GameObject.Find(p2Name).tag = "Untagged";
-                Invoke("setTagP2", 30f);
+                ChasingBackend.Self.goWaiting(p2Name);
 
-               
-              
+
+
             }
             else
             {
@@ -166,10 +171,9 @@ public class SlotA : MonoBehaviour
             if (p1isAI)
             {
                 ChasingBackend.addWiner(p1Name);
-                ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                GameObject.Find(p1Name).tag = "Untagged";
-                Invoke("setTagP1", 30f);
-            }else
+                ChasingBackend.Self.goWaiting(p1Name);
+            }
+            else
             {
                 UIController.Self.winPopupActive(p2card);
                 ChasingBackend.playerPertisipeted = true;
@@ -177,38 +181,36 @@ public class SlotA : MonoBehaviour
             p1Trigger.SetActive(true);
             Invoke("cardInactive", 5f);
         }
+        Debug.Log(p1card + " and " + p2card);
 
-
-        if(p1card != "Empty" && p2card != "Empty")
+        if (p1card != "Empty" && p2card != "Empty")
         {
             winerCard = ChasingBackend.getWiner(p1card, p2card);
         }
-           
-        Debug.Log(winerCard);
+
+        Debug.Log("result "+winerCard);
 
         if (winerCard == p1card)
         {
-            if(p1isAI)
+            if (p1isAI)
             {
-                ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                GameObject.Find(p1Name).tag = "Untagged";
-                Invoke("setTagP1", 30f);
+                ChasingBackend.Self.goWaiting(p1Name);
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 ChasingBackend.addWiner(p1Name);
 
                 if (p2isAI)
                 {
-                    ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                    GameObject.Find(p2Name).tag = "Untagged";
-                    Invoke("setTagP2", 30f);
-                }else
+                    ChasingBackend.Self.goWaiting(p2Name);
+                }
+                else
                 {
                     UIController.Self.lostPopupActive(p1card);
                     Invoke("mainMenu", 5f);
                 }
 
-            } else
+            }
+            else
             {
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
@@ -218,9 +220,7 @@ public class SlotA : MonoBehaviour
 
                 if (p2isAI)
                 {
-                    ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                    GameObject.Find(p2Name).tag = "Untagged";
-                    Invoke("setTagP2", 30f);
+                    ChasingBackend.Self.goWaiting(p2Name);
                 }
 
             }
@@ -229,22 +229,19 @@ public class SlotA : MonoBehaviour
         Debug.Log("winer card " + winerCard + " p2 card " + p2card);
         if (winerCard == p2card)
         {
-            
+
             if (p2isAI)
             {
-                ai.SetTargetForAI(p2Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                GameObject.Find(p2Name).tag = "Untagged";
-                Invoke("setTagP2", 30f);
+                ChasingBackend.Self.goWaiting(p2Name);
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 ChasingBackend.addWiner(p2Name);
 
                 if (p1isAI)
                 {
-                    ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                    GameObject.Find(p1Name).tag = "Untagged";
-                    Invoke("setTagP1", 30f);
-                } else
+                    ChasingBackend.Self.goWaiting(p1Name);
+                }
+                else
                 {
                     UIController.Self.lostPopupActive(p2card);
                     Invoke("mainMenu", 5f);
@@ -260,9 +257,7 @@ public class SlotA : MonoBehaviour
 
                 if (p1isAI)
                 {
-                    ai.SetTargetForAI(p1Name, new Vector3(Random.Range(420f, 425f), -0.02000013f, Random.Range(320f, 325f)));
-                    GameObject.Find(p1Name).tag = "Untagged";
-                    Invoke("setTagP1", 30f);
+                    ChasingBackend.Self.goWaiting(p1Name);
                 }
 
             }
@@ -271,7 +266,7 @@ public class SlotA : MonoBehaviour
 
         if (winerCard == "Equal")
         {
-            if(!p1isAI)
+            if (!p1isAI)
             {
                 UIController.Self.tiePopupActive("same card");
                 UIController.Self.cardThowPanelOpen();
@@ -284,9 +279,9 @@ public class SlotA : MonoBehaviour
             }
 
             cardInactive();
-           
+
             startGame();
-          
+
         }
 
     }
@@ -301,23 +296,17 @@ public class SlotA : MonoBehaviour
         A2cards.transform.Find("Hide").gameObject.SetActive(true);
     }
 
-    void setTagP1()
-    {
-        GameObject.Find(p1Name).tag = "AI";
-    }
+   
 
-    void setTagP2()
-    {
-        GameObject.Find(p2Name).tag = "AI";
-    }
+  
 
     void cardInactive()
     {
-        if(p1card != "Empty")
+        if (p1card != "Empty")
         {
             A1cards.transform.Find(p1card + " card").gameObject.SetActive(false);
         }
-       if (p2card != "Empty")
+        if (p2card != "Empty")
         {
             A2cards.transform.Find(p2card + " card").gameObject.SetActive(false);
         }
@@ -335,7 +324,7 @@ public class SlotA : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(timerUI.activeSelf)
+        if (timerUIisOn)
         {
             timerText.text = timer.GetSecondsString("Chasing timer");
         }

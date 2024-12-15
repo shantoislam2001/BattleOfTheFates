@@ -10,7 +10,7 @@ public class AIControlExample : MonoBehaviour
         aiManager.SetTargetForAI("AICharacter1", new Vector3(10, 0, 10));
 
         // Make "AICharacter2" run
-        aiManager.MakeAIRun("AICharacter2");
+      
     }
 
   
