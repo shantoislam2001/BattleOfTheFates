@@ -15,6 +15,7 @@ public class Cards : MonoBehaviour
     public string throwedCard;
     public string currentSlot;
     public string triggeredCard;
+    public bool played = false;
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created

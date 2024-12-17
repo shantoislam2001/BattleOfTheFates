@@ -64,7 +64,7 @@ public class SlotD : MonoBehaviour
         }
 
 
-        timer.StartTimer("Chasing timer", 15f, () =>
+        timer.StartTimer("Chasing timerD", 15f, () =>
         {
             timerUIisOn = false;
             winer();
@@ -326,7 +326,7 @@ public class SlotD : MonoBehaviour
     {
         if (timerUIisOn)
         {
-            timerText.text = timer.GetSecondsString("Chasing timer");
+            timerText.text = timer.GetSecondsString("Chasing timerD");
         }
     }
 

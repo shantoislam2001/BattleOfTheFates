@@ -64,19 +64,19 @@ public class SlotA : MonoBehaviour
         }
 
 
-        timer.StartTimer("Chasing timer", 15f, () =>
+        timer.StartTimer("Chasing timerA", 15f, () =>
         {
             timerUIisOn = false;
             winer();
         } );
         timerUIisOn = true;
-        
 
+        Debug.Log("start game called from a");
     }
 
     void winer()
     {
-        
+        Debug.Log("winer method called from a");
         Invoke("uiInactive", 5f);
         if (p1isAI == false)
         {
@@ -326,7 +326,7 @@ public class SlotA : MonoBehaviour
     {
         if (timerUIisOn)
         {
-            timerText.text = timer.GetSecondsString("Chasing timer");
+            timerText.text = timer.GetSecondsString("Chasing timerA");
         }
     }
 

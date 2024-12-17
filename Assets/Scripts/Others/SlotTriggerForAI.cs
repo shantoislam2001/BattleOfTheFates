@@ -35,6 +35,10 @@ public class SlotTriggerForAI : MonoBehaviour
     public GameObject d1;
     public GameObject d2;
 
+   
+
+
+
     private void Reset()
     {
         // Automatically adjust collider settings on adding the script
@@ -53,14 +57,19 @@ public class SlotTriggerForAI : MonoBehaviour
         if (enableDebugMessages)
             Debug.Log($"{other.name} entered the trigger zone.");
 
-        if (other.CompareTag("AI"))
+        if (other.CompareTag("AI") && !other.GetComponent<Cards>().played )
         {
+            other.GetComponent<Cards>().played = true;
             string n = other.gameObject.name;
             GameObject character = GameObject.Find(n);
             if ((Slot.emptySlots.Count > 0))
             {
                 string slot = Slot.emptySlots.Dequeue();
-                ai.SetTargetForAI(n, Slot.slotPosition[slot]);
+                Debug.Log("slot selected "+slot);
+                AICharacter.SetTarget(n, slotPoint(slot), () => {
+
+                    StartCoroutine(RotateAfterDelay(n, Slot.slotRotation[slot].y, slot, 1f));
+                });
                 updateSlotPayority(slot);
                 playerSetInSlot(slot, n);
                 Debug.Log("selecterd slot "+ slot);
@@ -161,6 +170,7 @@ public class SlotTriggerForAI : MonoBehaviour
         {
             SlotA.p2Name = player;
             slotA.startGame();
+            Debug.Log("game start a");
         }
         else if (slot == "B1")
         {
@@ -170,6 +180,7 @@ public class SlotTriggerForAI : MonoBehaviour
         {
             SlotB.p2Name = player;
             slotB.startGame();
+            Debug.Log("game start b");
         }
         else if (slot == "C1")
         {
@@ -239,6 +250,62 @@ public class SlotTriggerForAI : MonoBehaviour
     {
         yield return new WaitForSeconds(delay);
         action?.Invoke();
+    }
+
+    Transform slotPoint(string s)
+    {
+        if (s == "A1")
+        {
+            return a1.transform;
+        }
+        else
+        if (s == "A2")
+        {
+            return a2.transform;
+        }
+        else
+        if (s == "B1")
+        {
+            return b1.transform;
+        }
+        else
+        if (s == "B2")
+        {
+            return b2.transform;
+        }
+        else
+        if (s == "C1")
+        {
+            return c1.transform;
+        }
+        else
+        if (s == "C2")
+        {
+            return c2.transform;
+        }
+        else
+        if (s == "D1")
+        {
+            return d1.transform;
+        }
+        else
+        if (s == "D2")
+        {
+            return d2.transform;
+        }
+        return null;
+    }
+
+    IEnumerator RotateAfterDelay(string n, float v, string slot, float delay)
+    {
+        // Wait for the specified delay
+        yield return new WaitForSeconds(delay);
+
+        // Execute the rotation
+        GameObject.Find(n).transform.eulerAngles = new Vector3(0f, v, 0f);
+
+
+
     }
 
 }
