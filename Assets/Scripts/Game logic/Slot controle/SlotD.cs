@@ -44,6 +44,7 @@ public class SlotD : MonoBehaviour
         }
         else
         {
+            ChasingBackend.playerPertisipeted = true;
             UIController.Self.cdTimerActive();
         }
 
@@ -60,6 +61,8 @@ public class SlotD : MonoBehaviour
         }
         else
         {
+            ChasingBackend.playerPertisipeted = true;
+           
             UIController.Self.cdTimerActive();
         }
 
@@ -101,7 +104,7 @@ public class SlotD : MonoBehaviour
             if (p1isAI)
             {
                 ChasingBackend.Self.goWaiting(p1Name);
-
+                Slot.emptySlots.Enqueue("D1", 1);
 
                 if (p2card != "Empty")
                 {
@@ -109,6 +112,7 @@ public class SlotD : MonoBehaviour
                     {
                         ChasingBackend.addWiner(p2Name);
                         ChasingBackend.Self.goWaiting(p2Name);
+                        Slot.emptySlots.Enqueue("D2", 1);
 
                     }
                     else
@@ -116,7 +120,7 @@ public class SlotD : MonoBehaviour
                         UIController.Self.winPopupActive(p1card);
                         p1Trigger.SetActive(true);
                         Invoke("cardInactive", 5f);
-                        ChasingBackend.playerPertisipeted = true;
+                        Slot.emptySlots.Enqueue("D2", 1);
 
                     }
                 }
@@ -126,7 +130,7 @@ public class SlotD : MonoBehaviour
                     {
                         ChasingBackend.Self.goWaiting(p2Name);
                         p1Trigger.SetActive(true);
-
+                        Slot.emptySlots.Enqueue("D2", 1);
                         return;
                     }
                     else
@@ -134,6 +138,7 @@ public class SlotD : MonoBehaviour
                         UIController.Self.lostPopupActive(p1card);
                         p1Trigger.SetActive(true);
                         Invoke("mainMenu", 5f);
+                        Slot.emptySlots.Enqueue("D2", 1);
                         return;
                     }
                 }
@@ -143,6 +148,7 @@ public class SlotD : MonoBehaviour
             {
                 UIController.Self.lostPopupActive(p2card);
                 Invoke("mainMenu", 5f);
+                Slot.emptySlots.Enqueue("D1", 1);
             }
         }
 
@@ -158,13 +164,14 @@ public class SlotD : MonoBehaviour
             if (p2isAI)
             {
                 ChasingBackend.Self.goWaiting(p2Name);
-
+                Slot.emptySlots.Enqueue("D2", 1);
 
 
             }
             else
             {
                 UIController.Self.lostPopupActive(p1card);
+                Slot.emptySlots.Enqueue("D2", 1);
                 Invoke("mainMenu", 5f);
             }
 
@@ -172,23 +179,24 @@ public class SlotD : MonoBehaviour
             {
                 ChasingBackend.addWiner(p1Name);
                 ChasingBackend.Self.goWaiting(p1Name);
+                Slot.emptySlots.Enqueue("D1", 1);
             }
             else
             {
                 UIController.Self.winPopupActive(p2card);
-                ChasingBackend.playerPertisipeted = true;
+                Slot.emptySlots.Enqueue("D1", 1);
             }
             p1Trigger.SetActive(true);
             Invoke("cardInactive", 5f);
         }
-        Debug.Log(p1card + " and " + p2card);
+        
 
         if (p1card != "Empty" && p2card != "Empty")
         {
             winerCard = ChasingBackend.getWiner(p1card, p2card);
         }
 
-        Debug.Log("result " + winerCard);
+        Debug.Log("winer card "+winerCard);
 
         if (winerCard == p1card)
         {
@@ -198,14 +206,16 @@ public class SlotD : MonoBehaviour
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 ChasingBackend.addWiner(p1Name);
-
+                Slot.emptySlots.Enqueue("D1", 1);
                 if (p2isAI)
                 {
                     ChasingBackend.Self.goWaiting(p2Name);
+                    Slot.emptySlots.Enqueue("D2", 1);
                 }
                 else
                 {
                     UIController.Self.lostPopupActive(p1card);
+                    Slot.emptySlots.Enqueue("D2", 1);
                     Invoke("mainMenu", 5f);
                 }
 
@@ -216,11 +226,12 @@ public class SlotD : MonoBehaviour
                 p1Trigger.SetActive(true);
                 Debug.Log("you are win");
                 UIController.Self.winPopupActive(p2card);
-                ChasingBackend.playerPertisipeted = true;
+                Slot.emptySlots.Enqueue("D1", 1);
 
                 if (p2isAI)
                 {
                     ChasingBackend.Self.goWaiting(p2Name);
+                    Slot.emptySlots.Enqueue("D2", 1);
                 }
 
             }
@@ -236,15 +247,17 @@ public class SlotD : MonoBehaviour
                 Invoke("cardInactive", 6f);
                 p1Trigger.SetActive(true);
                 ChasingBackend.addWiner(p2Name);
-
+                Slot.emptySlots.Enqueue("D2", 1);
                 if (p1isAI)
                 {
                     ChasingBackend.Self.goWaiting(p1Name);
+                    Slot.emptySlots.Enqueue("D1", 1);
                 }
                 else
                 {
                     UIController.Self.lostPopupActive(p2card);
                     Invoke("mainMenu", 5f);
+                    Slot.emptySlots.Enqueue("D1", 1);
                 }
 
             }
@@ -254,10 +267,11 @@ public class SlotD : MonoBehaviour
                 p1Trigger.SetActive(true);
                 Debug.Log("you are win");
                 UIController.Self.winPopupActive(p1card);
-
+                Slot.emptySlots.Enqueue("D2", 1);
                 if (p1isAI)
                 {
                     ChasingBackend.Self.goWaiting(p1Name);
+                    Slot.emptySlots.Enqueue("D1", 1);
                 }
 
             }
@@ -310,8 +324,7 @@ public class SlotD : MonoBehaviour
         {
             A2cards.transform.Find(p2card + " card").gameObject.SetActive(false);
         }
-        Slot.emptySlots.Enqueue("A1", 1);
-        Slot.emptySlots.Enqueue("A2", 1);
+       
     }
 
     void uiInactive()

@@ -63,9 +63,9 @@ public class ChasingBackend : MonoBehaviour
         lostPlayer.Enqueue("AI1", 1);
         lostPlayer.Enqueue("AI3", 1);
         lostPlayer.Enqueue("AI4", 1);
-        //lostPlayer.Enqueue("AI5", 1);
-        //lostPlayer.Enqueue("AI6", 1);
-        //lostPlayer.Enqueue("AI7", 1);
+        lostPlayer.Enqueue("AI5", 1);
+        lostPlayer.Enqueue("AI6", 1);
+        lostPlayer.Enqueue("AI7", 1);
         stratGame();
         startRoam();
 
@@ -88,13 +88,14 @@ public class ChasingBackend : MonoBehaviour
 
     void stratGame()
     {
-
+        Slot.updateAllValue();
         UIController.Self.feTimerActive();
         timer.StartTimer("t1", findingTime, () =>
         {
             findingEndTimerIsOn = false;
             UIController.Self.feTimerInactive();
-
+            Debug.Log("Lost player " + lostPlayer.Count);
+            Debug.Log("win player " + winPlayer.Count);
             for (int i = 0; i < lostPlayer.Count; i++)
             {
                 string n = lostPlayer.Dequeue();
@@ -111,7 +112,7 @@ public class ChasingBackend : MonoBehaviour
                 {
                     UIController.Self.lostPopupActive("");
                     Invoke("backToMainMenu", 5f);
-
+                    return;
                 }
 
                 UIController.Self.ceTimerInactive();
@@ -121,7 +122,7 @@ public class ChasingBackend : MonoBehaviour
                 {
                     UIController.Self.nextRoundPanelActive();
                     Invoke("nextRoundPanelOff", 5f);
-                    Debug.Log("Next round started");
+                    playerPertisipeted = false;
                     waitingpoint = 0;
                     stratGame();
                 }
@@ -140,7 +141,8 @@ public class ChasingBackend : MonoBehaviour
     public void setSlotForAI(string name)
     {
         AICharacter.SetTarget(name, gate);
-            AICharacter.SetSpeed(name, 2f);
+        AICharacter.SetSpeed(name, 2f);
+        GameObject.Find(name).GetComponent<Cards>().played = false;
     }
 
     public static string getWiner(string p1, string p2)
@@ -218,7 +220,7 @@ public class ChasingBackend : MonoBehaviour
     {
         winPlayer.Enqueue(n);
         lostPlayer.Delete(n);
-        Debug.Log(lostPlayer.Count);
+        
     }
 
     public static void deleteLostPlayer()
@@ -246,12 +248,9 @@ public class ChasingBackend : MonoBehaviour
         else
         {
 
-            for (int i = 0; i < winPlayer.Count; i++)
+            for (int i = winPlayer.Count; i > 0; i--)
             {
-                string n = winPlayer.Dequeue();
-                setSlotForAI(n);
-                ai.ClearTargetForAI(n);
-                lostPlayer.Enqueue(n, 1);
+                lostPlayer.Enqueue(winPlayer.Dequeue(), 1);
             }
             return true;
 
@@ -286,6 +285,7 @@ public class ChasingBackend : MonoBehaviour
         LoadingScreen.ShowLoadingScreen();
         SceneManager.LoadScene("Menu");
         SceneManager.sceneLoaded += OnSceneLoaded;
+        Debug.Log("player perticipated " + playerPertisipeted);
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
@@ -340,6 +340,9 @@ public class ChasingBackend : MonoBehaviour
         {
             AICharacter.SetTarget(n, waitingP8);
         }
+
+
+
 
     }
 
@@ -398,5 +401,7 @@ public class ChasingBackend : MonoBehaviour
             card.fate += 1;
         }
     }
+
+ 
 
 }

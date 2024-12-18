@@ -36,7 +36,7 @@ public class Slot : MonoBehaviour
     {
         if(emptySlots.Count > 0) {
 
-            for(int i = 0; i < emptySlots.Count; i++)
+            for(int i = emptySlots.Count; i > 0; i--)
             {
                string s = emptySlots.Dequeue();
             }
@@ -58,14 +58,7 @@ public class Slot : MonoBehaviour
         emptySlots.Enqueue("D1", 1);
         emptySlots.Enqueue("D2", 1);
 
-        slotCurrentPlayer.Add("A1", "Empty");
-        slotCurrentPlayer.Add("A2", "Empty");
-        slotCurrentPlayer.Add("B1", "Empty");
-        slotCurrentPlayer.Add("B2", "Empty");
-        slotCurrentPlayer.Add("C1", "Empty");
-        slotCurrentPlayer.Add("C2", "Empty");
-        slotCurrentPlayer.Add("D1", "Empty");
-        slotCurrentPlayer.Add("D2", "Empty");
+       
         
     }
 
