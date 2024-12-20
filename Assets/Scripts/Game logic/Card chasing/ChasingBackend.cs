@@ -57,7 +57,6 @@ public class ChasingBackend : MonoBehaviour
     void Start()
     {
       
-
        
         lostPlayer.Enqueue("AI2", 1);
         lostPlayer.Enqueue("AI1", 1);
@@ -125,6 +124,9 @@ public class ChasingBackend : MonoBehaviour
                     playerPertisipeted = false;
                     waitingpoint = 0;
                     stratGame();
+                    spawner.SpawnObjects();
+                    startRoam();
+
                 }
                 else
                 {

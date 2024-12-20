@@ -5739,7 +5739,7 @@ MonoBehaviour:
   spawnRadius: 200
   numberOfObjects: 50
   avoidRadius: 2
-  destroyDelay: 300
+  destroyDelay: 12
 --- !u!1 &464341431
 GameObject:
   m_ObjectHideFlags: 0

@@ -21,7 +21,7 @@ public class CardSpawner : MonoBehaviour
         SpawnObjects();
     }
 
-    void SpawnObjects()
+    public void SpawnObjects()
     {
         for (int i = 0; i < numberOfObjects; i++)
         {
@@ -110,6 +110,7 @@ public class CardSpawner : MonoBehaviour
         {
             spawnedObjects.Remove(obj);
             Destroy(obj);
+            cardName.Delete(obj.name);
         }
     }
 }

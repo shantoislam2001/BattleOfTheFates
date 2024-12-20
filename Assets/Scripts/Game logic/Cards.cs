@@ -26,7 +26,7 @@ public class Cards : MonoBehaviour
           witch = 2;
           king = 2;
           rebel = 2;
-          fate = 2;
+          fate = 5;
         
     }
 
