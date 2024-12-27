@@ -93,12 +93,13 @@ public class LoginSystem : MonoBehaviour
 
     public void login()
     {
+        LoadingScreen.ShowLoadingScreen();
         try
         {
             var loginInfo = new LoginInfo(emailS, passwordS);
             StartCoroutine(firebaseAuth.Login(loginInfo,
-                onSuccess: response => SceneManager.LoadScene("Lobby"),
-                onError: error => Debug.Log(error)));
+                onSuccess: response => goMenu(),
+                onError: error => LoadingScreen.HideLoadingScreen()));
         }catch(Exception e) { }
     }
 
@@ -119,6 +120,18 @@ public class LoginSystem : MonoBehaviour
         passwordS = newText;
     }
 
+
+
+    public void goMenu()
+    {
+        LoadingScreen.HideLoadingScreen();
+        
+        SceneManager.LoadScene("Menu");
+        
+
+    }
+
+  
 
 
 }

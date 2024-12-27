@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 public class LoadingScreen : MonoBehaviour
 {
-    private static LoadingScreen self;
+    private static LoadingScreen instance;
     private GameObject loadingScreen;
     private RectTransform circularLoader;
     private Canvas canvas;
@@ -12,10 +12,9 @@ public class LoadingScreen : MonoBehaviour
 
     private void Awake()
     {
-        if (self == null)
+        if (instance == null)
         {
-            self = this;
-            DontDestroyOnLoad(gameObject);
+            instance = this;
             CreateLoadingScreen();
         }
         else
@@ -45,7 +44,6 @@ public class LoadingScreen : MonoBehaviour
         scaler.referenceResolution = new Vector2(1920, 1080);
 
         canvasGO.AddComponent<GraphicRaycaster>();
-        DontDestroyOnLoad(canvasGO);
 
         // Create Loading Screen Panel
         loadingScreen = new GameObject("LoadingScreen");
@@ -73,19 +71,19 @@ public class LoadingScreen : MonoBehaviour
 
     public static void ShowLoadingScreen()
     {
-        if (self != null && self.loadingScreen != null)
+        if (instance != null && instance.loadingScreen != null)
         {
-            self.loadingScreen.SetActive(true);
-            self.isRotating = true;
+            instance.loadingScreen.SetActive(true);
+            instance.isRotating = true;
         }
     }
 
     public static void HideLoadingScreen()
     {
-        if (self != null && self.loadingScreen != null)
+        if (instance != null && instance.loadingScreen != null)
         {
-            self.loadingScreen.SetActive(false);
-            self.isRotating = false;
+            instance.loadingScreen.SetActive(false);
+            instance.isRotating = false;
         }
     }
 }

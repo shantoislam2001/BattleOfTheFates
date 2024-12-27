@@ -95,7 +95,7 @@ public class UIController : MonoBehaviour
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
+        Invoke("getPlayerCard", 5f);
         cardsPanelAnimation= new SlideAnimation(cardsPanel, animationDuration, SlideAnimation.SlideDirection.RightToLeft, canvas, idlePosition);
         enterButtonAnimation= new SlideAnimation(enterButton, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, enterButtonIdlePosition);
         cardThrowAnimation = new SlideAnimation(cardThrowPanel, animationDuration, SlideAnimation.SlideDirection.DownToUp, canvas, cardThrowPanelPosition);
@@ -109,6 +109,11 @@ public class UIController : MonoBehaviour
         nextRoundPanelAnimation = new SlideAnimation(nextRoundPanel, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, nextRoundPanelPosition);
         finallyWinPanelAnimation = new SlideAnimation(finallyWinPanel, animationDuration, SlideAnimation.SlideDirection.LeftToRight, canvas, finallyWinPanelPosition);
         
+    }
+
+    void getPlayerCard()
+    {
+        card = GameObject.FindGameObjectWithTag("Player").GetComponent<Cards>();
     }
 
     // Cards 

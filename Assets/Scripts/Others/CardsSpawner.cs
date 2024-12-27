@@ -23,6 +23,7 @@ public class CardSpawner : MonoBehaviour
 
     public void SpawnObjects()
     {
+        clearQ();
         for (int i = 0; i < numberOfObjects; i++)
         {
             Vector3 randomPosition;
@@ -110,7 +111,18 @@ public class CardSpawner : MonoBehaviour
         {
             spawnedObjects.Remove(obj);
             Destroy(obj);
-            cardName.Delete(obj.name);
+            
+        }
+    }
+
+    void clearQ()
+    {
+        if(cardName.Count > 0)
+        {
+            for (int i = 0; i < cardName.Count; i++)
+            {
+                string s = cardName.Dequeue();
+            }
         }
     }
 }

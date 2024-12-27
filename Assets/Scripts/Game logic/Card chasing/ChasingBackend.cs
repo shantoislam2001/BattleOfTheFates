@@ -287,7 +287,7 @@ public class ChasingBackend : MonoBehaviour
         LoadingScreen.ShowLoadingScreen();
         SceneManager.LoadScene("Menu");
         SceneManager.sceneLoaded += OnSceneLoaded;
-        Debug.Log("player perticipated " + playerPertisipeted);
+        
     }
 
     private void OnSceneLoaded(Scene scene, LoadSceneMode mode)
