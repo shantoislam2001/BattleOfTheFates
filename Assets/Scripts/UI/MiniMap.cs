@@ -2,12 +2,12 @@
 
 public class MiniMap : MonoBehaviour
 {
-    public Transform player;              // প্লেয়ারের ট্রান্সফর্ম
-    public Transform destination;         // গন্তব্যের ট্রান্সফর্ম
-    public RectTransform pointer;         // মিনি ম্যাপের পয়েন্টারের RectTransform
+    public Transform player;              
+    public Transform destination;        
+    public RectTransform pointer;        
 
-    public float maxDistance = 50f;       // নিকটবর্তী দূরত্ব যেখানে পয়েন্টার প্রকৃত অবস্থানে দেখানো হবে
-    public float miniMapRadius = 100f;    // মিনি ম্যাপের ব্যাসার্ধ
+    public float maxDistance = 50f;      
+    public float miniMapRadius = 100f;   
 
     private void Start()
     {
